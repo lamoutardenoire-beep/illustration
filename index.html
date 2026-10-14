@@ -110,4 +110,246 @@
                         </h2>
 
                         <!-- Hotspot #1 (Title) -->
-                        <button onclick="selectHotspot(1)" class="hotspot-btn absolute -right-2 -top-2 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-white z-20 cursor-pointer transition transform hover:scale-110 hotspot-pulse bg-red-50
+                        <button onclick="selectHotspot(1)" class="hotspot-btn absolute -right-2 -top-2 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-white z-20 cursor-pointer transition transform hover:scale-110 hotspot-pulse bg-red-500" id="hotspot-1">
+                            1
+                        </button>
+                    </div>
+
+                    <!-- Subtitle / Value Prop -->
+                    <p id="hero-subtitle" class="text-sm md:text-base text-slate-400 max-w-xl leading-relaxed">
+                        Une plateforme complète pour gérer vos tâches, optimiser vos flux de travail et améliorer les résultats de votre équipe au quotidien.
+                    </p>
+
+                    <!-- Call to Action Area -->
+                    <div class="pt-4 flex flex-col sm:flex-row items-start sm:items-center gap-4 relative">
+                        <div class="relative">
+                            <button id="hero-cta" class="px-6 py-3.5 rounded-xl font-bold text-sm bg-blue-600 text-white hover:bg-blue-500 transition shadow-lg shadow-blue-600/20">
+                                Démarrer maintenant
+                            </button>
+
+                            <!-- Hotspot #2 (CTA) -->
+                            <button onclick="selectHotspot(2)" class="hotspot-btn absolute -right-3 -top-3 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-white z-20 cursor-pointer transition transform hover:scale-110 hotspot-pulse bg-red-500" id="hotspot-2">
+                                2
+                            </button>
+                        </div>
+
+                        <span id="hero-cta-micro" class="text-xs text-slate-500 font-medium">
+                            Accès immédiat
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Proof / Social Proof Bar -->
+                <div class="pt-8 mt-8 border-t border-slate-800/80 relative">
+                    <div id="hero-proof-container" class="flex items-center gap-4 text-xs text-slate-400">
+                        <span id="hero-proof-text">Rejoint par des milliers d'utilisateurs satisfaits.</span>
+                    </div>
+
+                    <!-- Hotspot #3 (Proof) -->
+                    <button onclick="selectHotspot(3)" class="hotspot-btn absolute right-0 top-6 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-white z-20 cursor-pointer transition transform hover:scale-110 hotspot-pulse bg-red-500" id="hotspot-3">
+                        3
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Diagnostic & Recommendations Panel (Column 9-12) -->
+        <div class="lg:col-span-4 space-y-4">
+            
+            <!-- Main Explanation Box -->
+            <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-5 shadow-xl backdrop-blur">
+                <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-700">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+                        <i data-lucide="crosshair" class="w-4 h-4 text-blue-400"></i>
+                        Diagnostic CRO
+                    </span>
+                    <span id="current-mode-tag" class="text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30">
+                        Version Frictional
+                    </span>
+                </div>
+
+                <div id="explanation-content" class="space-y-3">
+                    <!-- Content injected via JS -->
+                </div>
+            </div>
+
+            <!-- Context / Info Note Box -->
+            <div class="bg-blue-950/30 border border-blue-800/40 rounded-xl p-4 text-xs text-blue-200/80 space-y-1">
+                <div class="font-semibold text-blue-300 flex items-center gap-1.5">
+                    <i data-lucide="info" class="w-4 h-4 text-blue-400"></i>
+                    Note de cadrage
+                </div>
+                <p class="leading-relaxed text-[11px]">
+                    Cas réel issu d'un accompagnement client (données et contexte strictly anonymisés).
+                </p>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-6xl w-full mx-auto mt-8 pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+        <p>© Audit & Architecture de Tunnels d'Acquisition B2B</p>
+        <p class="font-mono">Analyse de la Friction Cognitive & Neuromarketing</p>
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        // State
+        let currentMode = 'before'; // 'before' | 'after'
+        let activeHotspot = 1;      // 1 | 2 | 3
+        let showAnnotations = true;
+
+        // Content Data
+        const data = {
+            before: {
+                badge: "Logiciel All-in-One",
+                title: "Boostez votre productivité d'entreprise",
+                subtitle: "Une plateforme complète pour gérer vos tâches, optimiser vos flux de travail et améliorer les résultats de votre équipe au quotidien.",
+                cta: "Démarrer maintenant",
+                ctaMicro: "Accès immédiat",
+                proof: "Rejoint par des milliers d'utilisateurs satisfaits.",
+                hotspots: {
+                    1: {
+                        q: "1. Comprend-on ce qui est vendu ?",
+                        status: "NOK - Promesse Trop Vague",
+                        desc: "« Boostez votre productivité » est un cliché marketing. L'utilisateur ne sait pas S'IL s'agit d'un CRM, d'un outil de gestion de projet ou d'un logiciel comptable.",
+                        impact: "Friction cognitive élevée : l'esprit doit faire un effort de devinette."
+                    },
+                    2: {
+                        q: "2. Sait-on ce qui se passe après le clic ?",
+                        status: "NOK - Engagement Flou",
+                        desc: "« Démarrer maintenant » ne précise aucun coût ni durée. Est-ce payant ? Faut-il une carte bancaire ? Est-ce une démo avec un commercial ?",
+                        impact: "Peur du piège / de l'engagement imprévu."
+                    },
+                    3: {
+                        q: "3. Pourquoi croire cette promesse ?",
+                        status: "NOK - Preuve Générique",
+                        desc: "« Des milliers d'utilisateurs » est une formule usée que n'importe quelle entreprise peut inventer. Aucune preuve concrète ou chiffrée.",
+                        impact: "Scepticisme immédiat du prospect B2B."
+                    }
+                }
+            },
+            after: {
+                badge: "Logiciel de Gestion de Projet B2B",
+                title: "Divisez par 2 le temps passé sur vos rapports d'audit",
+                subtitle: "Automatisera la collecte de données, génère vos rapports PDF en 1 clic et centralise le suivi de vos missions financières.",
+                cta: "Tester gratuitement (14 jours sans CB)",
+                ctaMicro: "Configuration en 2 min • Sans engagement",
+                proof: "★★★★★ 4.9/5 par +120 cabinets d'audit (KPMG, Deloitte alumni...)",
+                hotspots: {
+                    1: {
+                        q: "1. Comprend-on ce qui est vendu ?",
+                        status: "OK - Bénéfice & Métier Clairs",
+                        desc: "La proposition de valeur est ultra-spécifique (Rapports d'audit B2B). Le gain est chiffré (« Divisez par 2 le temps »).",
+                        impact: "Clarté immédiate en moins de 3 secondes."
+                    },
+                    2: {
+                        q: "2. Sait-on ce qui se passe après le clic ?",
+                        status: "OK - Réduction Totale du Risque",
+                        desc: "L'utilisateur sait exactement à quoi s'attendre : un essai gratuit de 14 jours, sans entrer de carte de crédit, prêt en 2 minutes.",
+                        impact: "Désamorçage complet de la peur du clic."
+                    },
+                    3: {
+                        q: "3. Pourquoi croire cette promesse ?",
+                        status: "OK - Preuve Sociale Périmétrique",
+                        desc: "Note précise (4.9/5), nombre précis d'entreprises (+120 cabinets) et évocation de noms de référence du secteur.",
+                        impact: "Transfert de confiance immédiat."
+                    }
+                }
+            }
+        };
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Render Function
+        function render() {
+            const currentData = data[currentMode];
+            
+            // DOM Elements
+            document.getElementById('hero-badge-text').innerText = currentData.badge;
+            document.getElementById('hero-title').innerText = currentData.title;
+            document.getElementById('hero-subtitle').innerText = currentData.subtitle;
+            document.getElementById('hero-cta').innerText = currentData.cta;
+            document.getElementById('hero-cta-micro').innerText = currentData.ctaMicro;
+            document.getElementById('hero-proof-text').innerText = currentData.proof;
+
+            // UI Switches Update
+            const btnBefore = document.getElementById('btn-before');
+            const btnAfter = document.getElementById('btn-after');
+            const modeTag = document.getElementById('current-mode-tag');
+
+            if (currentMode === 'before') {
+                btnBefore.className = "px-4 py-2 text-xs font-semibold rounded-md transition-all duration-200 flex items-center gap-1.5 bg-red-500/20 text-red-400 border border-red-500/30";
+                btnAfter.className = "px-4 py-2 text-xs font-semibold rounded-md transition-all duration-200 flex items-center gap-1.5 text-slate-400 hover:text-white";
+                modeTag.className = "text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30";
+                modeTag.innerText = "Version Frictional";
+            } else {
+                btnAfter.className = "px-4 py-2 text-xs font-semibold rounded-md transition-all duration-200 flex items-center gap-1.5 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
+                btnBefore.className = "px-4 py-2 text-xs font-semibold rounded-md transition-all duration-200 flex items-center gap-1.5 text-slate-400 hover:text-white";
+                modeTag.className = "text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
+                modeTag.innerText = "Version Optimisée";
+            }
+
+            // Update Hotspot Color Styles
+            for (let i = 1; i <= 3; i++) {
+                const hs = document.getElementById(`hotspot-${i}`);
+                if (currentMode === 'before') {
+                    hs.className = `hotspot-btn absolute w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-white z-20 cursor-pointer transition transform hover:scale-110 hotspot-pulse bg-red-500 ${i === 1 ? '-right-2 -top-2' : i === 2 ? '-right-3 -top-3' : 'right-0 top-6'} ${activeHotspot === i ? 'ring-4 ring-red-300 scale-110' : ''}`;
+                } else {
+                    hs.className = `hotspot-btn absolute w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-white z-20 cursor-pointer transition transform hover:scale-110 hotspot-pulse-green bg-emerald-500 ${i === 1 ? '-right-2 -top-2' : i === 2 ? '-right-3 -top-3' : 'right-0 top-6'} ${activeHotspot === i ? 'ring-4 ring-emerald-300 scale-110' : ''}`;
+                }
+                hs.style.display = showAnnotations ? 'flex' : 'none';
+            }
+
+            // Render Explanation Box
+            const activeInfo = currentData.hotspots[activeHotspot];
+            const explanationContainer = document.getElementById('explanation-content');
+            
+            const isNok = currentMode === 'before';
+            explanationContainer.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <span class="text-sm font-bold text-white">${activeInfo.q}</span>
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded ${isNok ? 'bg-red-950 text-red-400 border border-red-800' : 'bg-emerald-950 text-emerald-400 border border-emerald-800'}">
+                        ${activeInfo.status}
+                    </span>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed pt-1">
+                    ${activeInfo.desc}
+                </p>
+                <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 mt-2">
+                    <span class="text-[11px] font-semibold text-slate-400 block mb-0.5">Impact Neuromarketing :</span>
+                    <span class="text-xs ${isNok ? 'text-red-300' : 'text-emerald-300'}">${activeInfo.impact}</span>
+                </div>
+                <div class="pt-2 flex justify-between text-[11px] text-slate-500">
+                    <span>Cliquez sur les puces 1, 2, 3 pour explorer</span>
+                    <span>Analyse #${activeHotspot}/3</span>
+                </div>
+            `;
+        }
+
+        // Actions
+        function setMode(mode) {
+            currentMode = mode;
+            render();
+        }
+
+        function selectHotspot(id) {
+            activeHotspot = id;
+            render();
+        }
+
+        function toggleAnnotations() {
+            showAnnotations = !showAnnotations;
+            document.getElementById('ann-status-text').innerText = showAnnotations ? "Masquer Annotations" : "Afficher Annotations";
+            render();
+        }
+
+        // Initial Render
+        render();
+    </script>
+</body>
+</html>
