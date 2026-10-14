@@ -59,7 +59,7 @@
             </div>
             <div>
                 <h1 class="text-xs md:text-sm font-extrabold text-[#fdfdfd] tracking-tight">
-                    Cas client (entièrement anonymisé) · Démonstration de lecture d’une page d’inscription
+                    Cas client reconstitué et anonymisé, analyse d’une page d’inscription.
                 </h1>
                 <p class="text-[11px] text-[#a0a09b] font-medium mt-0.5">
                     <span class="text-[#b8956a] font-semibold">Analyse de la friction cognitive :</span> Ce n’est pas un manque d’effort. C’est un manque de clarté.
@@ -71,11 +71,11 @@
         <div class="flex items-center gap-1.5 bg-[#1a1a18] p-1.5 rounded-xl border border-[#33332e] shrink-0">
             <button id="btn-before" onclick="setMode('before')" class="px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 bg-[#c86d51] text-white shadow-md">
                 <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
-                AVANT (Version Frictional)
+                AVANT (Version  initiale reconstituée)
             </button>
             <button id="btn-after" onclick="setMode('after')" class="px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 text-[#a0a09b] hover:text-[#fdfdfd]">
                 <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
-                APRÈS (Version Optimisée)
+                APRÈS (Version optimisée)
             </button>
         </div>
     </header>
@@ -298,25 +298,25 @@
                 bottomReassuranceHtml: "",
                 hotspots: {
                     1: {
-                        q: "1. Compréhension de la visiteuse",
+                        q: "1. Clarté de l’offre et du public",
                         status: "NOK - Promesse Vague",
                         statusStyle: "bg-[#c86d51]/20 text-[#c86d51] border border-[#c86d51]/40",
                         desc: "« Passez à l'étape supérieure » pourrait désigner n'importe quelle offre. Rien n'indique qu'on comprend la situation vécue par le prospect.",
-                        impact: "Le cerveau ne se sent pas concerné et décroche."
+                        impact: "Le prospect peut avoir du mal à reconnaître si cette masterclass répond à son besoin."
                     },
                     2: {
-                        q: "2. Méthode & Différenciation",
+                        q: "2. Simplicité du parcours d’inscription",
                         status: "NOK - Absente / Inconnue",
                         statusStyle: "bg-[#c86d51]/20 text-[#c86d51] border border-[#c86d51]/40",
                         desc: "On ne sait ni quoi, ni comment, ni pourquoi c'est différent d'un autre contenu gratuit. Aucune méthode nommée.",
-                        impact: "Aucune valeur perçue à s'inscrire."
+                        impact: "Le bénéfice de l’inscription reste difficile à évaluer."
                     },
                     3: {
-                        q: "3. Parcours & Réduction des Risques",
+                        q: "3. Pertinence et crédibilité de la preuve",
                         status: "NOK - Surcharge & Flou",
                         statusStyle: "bg-[#c86d51]/20 text-[#c86d51] border border-[#c86d51]/40",
                         desc: "9 portes de sortie au total (menu + boutons additionnels), six champs à remplir, et aucun élément de réassurance sous le clic.",
-                        impact: "Friction cognitive élevée : abandon avant saisie."
+                        impact: "Le formulaire et les liens concurrents constituent des points de friction à examiner."
                     }
                 }
             },
@@ -384,25 +384,25 @@
                 `,
                 hotspots: {
                     1: {
-                        q: "1. Compréhension de la visiteuse",
+                        q: "1. Clarté de l’offre et du public",
                         status: "OK - Scène Vécu Identifiée",
                         statusStyle: "bg-[#6b8e73]/20 text-[#6b8e73] border border-[#6b8e73]/40",
                         desc: "La scène (épuisée en fin de journée, réouverture des mails le dimanche soir) montre qu'on comprend exactement ce que vit la visiteuse.",
                         impact: "Connexion émotionnelle et sentiment immédiat d'être comprise."
                     },
                     2: {
-                        q: "2. Méthode & Différenciation",
+                        q: "2. Simplicité du parcours d’inscription",
                         status: "OK - Méthode Nommée & Livrable",
                         statusStyle: "bg-[#6b8e73]/20 text-[#6b8e73] border border-[#6b8e73]/40",
                         desc: "La méthode est posée (méthode des 3 blocs), sa différence tient en une ligne et le livrable est clair (semaine planifiée en 45 min).",
-                        impact: "Le prospect saisit immédiatement la valeur et veut le résultat."
+                        impact: "Le résultat annoncé et les livrables deviennent plus explicites."
                     },
                     3: {
-                        q: "3. Parcours & Réduction des Risques",
+                        q: "3. Pertinence et crédibilité de la preuve",
                         status: "OK - Chemin Unique & Risque Levé",
                         statusStyle: "bg-[#6b8e73]/20 text-[#6b8e73] border border-[#6b8e73]/40",
-                        desc: "Un seul chemin, le risque est totalement levé sous le bouton (replay, pas de spam), et la preuve spécifique vient rassurer juste à côté.",
-                        impact: "Passage à l'acte sans hésitation."
+                        desc: "Un seul chemin,  plusieurs incertitudes pratiques sont clarifiées, et la preuve spécifique vient rassurer juste à côté.",
+                        impact: "Une inscription plus facile à comprendre et à compléter."
                     }
                 }
             }
