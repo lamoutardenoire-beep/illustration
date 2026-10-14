@@ -184,7 +184,7 @@
 
                     <!-- Hotspot Pin #3 -->
                     <div class="absolute right-0 top-4" id="hotspot-wrapper-3">
-                        <button onclick="selectHotspot(3)" id="hotspot-3" class="hotspot-pin w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-[#1a1a18] relative z-10 shadow">
+                        <button onclick="selectHotspot(3)" id="hotspot-3" class="hotspot-pin w-7 h-7 rounded-full flex items-center justify-center font-extrabold text-xs text-[#1a1a18] relative z-10 shadow">
                             3
                         </button>
                     </div>
@@ -197,8 +197,8 @@
         <div class="lg:col-span-4 space-y-4">
             
             <!-- Audit Card -->
-            <div class="bg-[#232320] border border-[#33332e] rounded-2xl p-5 shadow-xl relative overflow-hidden">
-                <div class="flex items-center justify-between pb-3 mb-3 border-b border-[#33332e]">
+            <div class="bg-[#232320] border border-[#33332e] rounded-2xl p-5 shadow-xl relative overflow-hidden space-y-4">
+                <div class="flex items-center justify-between pb-3.5 border-b border-[#33332e]">
                     <span class="text-xs font-bold uppercase tracking-wider text-[#a0a09b] flex items-center gap-2 font-mono">
                         <i data-lucide="crosshair" class="w-4 h-4 text-[#b8956a]"></i>
                         ANALYSE CLINIQUE
@@ -208,7 +208,7 @@
                     </span>
                 </div>
 
-                <div id="explanation-content" class="space-y-3.5">
+                <div id="explanation-content" class="space-y-4">
                     <!-- Injected -->
                 </div>
             </div>
@@ -443,13 +443,13 @@
             if (currentMode === 'before') {
                 btnBefore.className = "px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 bg-[#c86d51] text-white shadow-md";
                 btnAfter.className = "px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 text-[#a0a09b] hover:text-[#fdfdfd]";
-                modeTag.className = "text-[10px] uppercase font-bold px-2.5 py-1 rounded-md bg-[#c86d51]/20 text-[#c86d51] border border-[#c86d51]/40 font-mono";
-                modeTag.innerText = "Version Frictional (Avant)";
+                modeTag.className = "text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-[#c86d51]/20 text-[#c86d51] border border-[#c86d51]/40 font-mono";
+                modeTag.innerText = "AVANT (Frictional)";
             } else {
                 btnAfter.className = "px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 bg-[#6b8e73] text-[#1a1a18] shadow-md font-bold";
                 btnBefore.className = "px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 text-[#a0a09b] hover:text-[#fdfdfd]";
-                modeTag.className = "text-[10px] uppercase font-bold px-2.5 py-1 rounded-md bg-[#6b8e73]/20 text-[#6b8e73] border border-[#6b8e73]/40 font-mono";
-                modeTag.innerText = "Version Optimisée (Après)";
+                modeTag.className = "text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-[#6b8e73]/20 text-[#6b8e73] border border-[#6b8e73]/40 font-mono";
+                modeTag.innerText = "APRÈS (Optimisé)";
             }
 
             for (let i = 1; i <= 3; i++) {
@@ -466,20 +466,22 @@
             const explanationContainer = document.getElementById('explanation-content');
 
             explanationContainer.innerHTML = `
-                <div class="flex items-center justify-between">
-                    <span class="text-xs font-extrabold text-[#fdfdfd] font-mono">${activeInfo.q}</span>
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded font-mono ${activeInfo.statusStyle}">
-                        ${activeInfo.status}
-                    </span>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between gap-2">
+                        <span class="text-xs font-extrabold text-[#fdfdfd] font-mono">${activeInfo.q}</span>
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded font-mono shrink-0 ${activeInfo.statusStyle}">
+                            ${activeInfo.status}
+                        </span>
+                    </div>
+                    <p class="text-xs text-[#a0a09b] leading-relaxed font-normal">
+                        ${activeInfo.desc}
+                    </p>
                 </div>
-                <p class="text-xs text-[#a0a09b] leading-relaxed font-normal">
-                    ${activeInfo.desc}
-                </p>
-                <div class="bg-[#1a1a18] p-3 rounded-xl border border-[#33332e]">
-                    <span class="text-[11px] font-bold text-[#b8956a] uppercase tracking-wider block mb-1 font-mono">Impact Neuromarketing :</span>
-                    <span class="text-xs text-[#fdfdfd] font-medium leading-relaxed">${activeInfo.impact}</span>
+                <div class="bg-[#1a1a18] p-3.5 rounded-xl border border-[#33332e] space-y-1">
+                    <span class="text-[11px] font-bold text-[#b8956a] uppercase tracking-wider block font-mono">Impact Neuromarketing :</span>
+                    <span class="text-xs text-[#fdfdfd] font-medium leading-relaxed block">${activeInfo.impact}</span>
                 </div>
-                <div class="pt-1.5 flex justify-between text-[11px] text-[#a0a09b]/60 font-mono">
+                <div class="pt-1 flex justify-between text-[11px] text-[#a0a09b]/60 font-mono border-t border-[#33332e]/60 mt-2">
                     <span>Puces 1, 2, 3 pour explorer</span>
                     <span>Analyse #${activeHotspot}/3</span>
                 </div>
