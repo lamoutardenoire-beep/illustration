@@ -105,7 +105,7 @@
                 </button>
             </div>
 
-            <!-- Simulated Page Body (Balanced Spacing) -->
+            <!-- Simulated Page Body -->
             <div class="p-6 md:p-8 flex flex-col justify-between relative bg-[#fcfcfa] text-[#1a1a18]">
                 
                 <!-- Navbar -->
@@ -113,7 +113,7 @@
                     <!-- Injected -->
                 </div>
 
-                <!-- Main Hero 2-Column Balanced Layout (6/6) -->
+                <!-- Main Hero 2-Column Layout -->
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start relative my-2">
                     
                     <!-- Left Column: Copywriting (Span 6) -->
@@ -140,10 +140,11 @@
                         </div>
                     </div>
 
-                    <!-- Right Column: Registration Card (Span 6) -->
-                    <div class="md:col-span-6 relative">
-                        <div class="bg-white border border-slate-200/90 rounded-xl p-4.5 space-y-3 shadow-md shadow-slate-200/40">
-                            <div class="text-center border-b border-slate-100 pb-2">
+                    <!-- Right Column: Registration Card & External Buttons (Span 6) -->
+                    <div class="md:col-span-6 relative space-y-3">
+                        <!-- Main Form Card -->
+                        <div class="bg-white border border-slate-200/90 rounded-xl p-4 space-y-2.5 shadow-sm">
+                            <div class="text-center border-b border-slate-100 pb-1.5">
                                 <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider font-mono">Formulaire d'Accès</span>
                             </div>
 
@@ -151,14 +152,19 @@
                                 <!-- Injected -->
                             </div>
 
-                            <div id="cta-buttons-container" class="pt-1 space-y-2">
-                                <!-- Injected -->
+                            <div id="cta-primary-container" class="pt-1">
+                                <!-- Primary CTA Injected -->
                             </div>
+                        </div>
+
+                        <!-- Secondary External Buttons (Aligned Side-by-Side Below Form) -->
+                        <div id="secondary-buttons-container">
+                            <!-- External Secondary CTAs Injected -->
                         </div>
 
                         <!-- Hotspot Pin #2 -->
                         <div class="absolute -right-2 -top-2" id="hotspot-wrapper-2">
-                            <button onclick="selectHotspot(2)" id="hotspot-2" class="hotspot-pin w-7 h-7 rounded-full flex items-center justify-center font-extrabold text-xs text-[#1a1a18] relative z-10 shadow">
+                            <button onclick="selectHotspot(2)" id="hotspot-2" class="hotspot-pin w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-[#1a1a18] relative z-10 shadow">
                                 2
                             </button>
                         </div>
@@ -178,7 +184,7 @@
 
                     <!-- Hotspot Pin #3 -->
                     <div class="absolute right-0 top-4" id="hotspot-wrapper-3">
-                        <button onclick="selectHotspot(3)" id="hotspot-3" class="hotspot-pin w-7 h-7 rounded-full flex items-center justify-center font-extrabold text-xs text-[#1a1a18] relative z-10 shadow">
+                        <button onclick="selectHotspot(3)" id="hotspot-3" class="hotspot-pin w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-[#1a1a18] relative z-10 shadow">
                             3
                         </button>
                     </div>
@@ -263,18 +269,20 @@
                 subtitle: "Rejoignez ma masterclass gratuite et découvrez comment avancer.",
                 methodHtml: "",
                 fieldsHtml: `
-                    <input type="text" placeholder="Prénom" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
-                    <input type="text" placeholder="Nom" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
-                    <input type="email" placeholder="Email" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
-                    <input type="tel" placeholder="Téléphone" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
-                    <input type="text" placeholder="Profession" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
-                    <input type="text" placeholder="Comment m’avez-vous connue ?" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
+                    <input type="text" placeholder="Prénom" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-500 placeholder-slate-400">
+                    <input type="text" placeholder="Nom" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-500 placeholder-slate-400">
+                    <input type="email" placeholder="Email" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-500 placeholder-slate-400">
+                    <input type="tel" placeholder="Téléphone" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-500 placeholder-slate-400">
+                    <input type="text" placeholder="Profession" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-500 placeholder-slate-400">
+                    <input type="text" placeholder="Comment m’avez-vous connue ?" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-500 placeholder-slate-400">
                 `,
-                buttonsHtml: `
-                    <div class="flex flex-col gap-1.5 pt-1">
-                        <button class="w-full bg-[#1a1a18] hover:bg-black text-white font-bold px-4 py-2.5 rounded-lg text-xs shadow-sm">Je m’inscris</button>
-                        <button class="w-full bg-slate-100 text-slate-600 font-medium px-4 py-2 rounded-lg text-xs border border-slate-200">En savoir plus</button>
-                        <button class="w-full bg-slate-100 text-slate-600 font-medium px-4 py-2 rounded-lg text-xs border border-slate-200">Voir mes offres</button>
+                ctaPrimaryHtml: `
+                    <button class="w-full bg-[#1a1a18] hover:bg-black text-white font-bold px-4 py-2.5 rounded-lg text-xs shadow-sm">Je m’inscris</button>
+                `,
+                secondaryButtonsHtml: `
+                    <div class="grid grid-cols-2 gap-2 pt-1">
+                        <button class="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium px-2 py-1.5 rounded-lg text-[11px] border border-slate-200 transition text-center truncate">En savoir plus</button>
+                        <button class="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium px-2 py-1.5 rounded-lg text-[11px] border border-slate-200 transition text-center truncate">Voir mes offres</button>
                     </div>
                 `,
                 proofHtml: `<p class="italic text-slate-500 font-medium text-xs">Déjà des milliers d’abonnées conquises</p>`,
@@ -334,20 +342,21 @@
                 fieldsHtml: `
                     <div class="space-y-1">
                         <label class="text-[11px] font-bold text-slate-700">Prénom</label>
-                        <input type="text" placeholder="Votre prénom" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-800 placeholder-slate-400">
+                        <input type="text" placeholder="Votre prénom" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-800 placeholder-slate-400">
                     </div>
                     <div class="space-y-1">
                         <label class="text-[11px] font-bold text-slate-700">Adresse email</label>
-                        <input type="email" placeholder="votre@email.com" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-800 placeholder-slate-400">
+                        <input type="email" placeholder="votre@email.com" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-800 placeholder-slate-400">
                     </div>
                 `,
-                buttonsHtml: `
-                    <button class="w-full bg-[#b8956a] hover:bg-[#a6845c] text-[#1a1a18] font-extrabold px-5 py-3 rounded-xl text-xs transition shadow-md shadow-[#b8956a]/20">Je réserve ma place</button>
+                ctaPrimaryHtml: `
+                    <button class="w-full bg-[#b8956a] hover:bg-[#a6845c] text-[#1a1a18] font-extrabold px-5 py-2.5 rounded-xl text-xs transition shadow-md shadow-[#b8956a]/20">Je réserve ma place</button>
                     <p class="text-[11px] text-slate-500 font-medium leading-relaxed pt-1 flex items-start gap-1">
                         <span class="text-xs">🔒</span>
                         <span><strong class="text-slate-800">Gratuit, 45 minutes.</strong> Un replay si vous ne pouvez pas venir. Un seul email de rappel.</span>
                     </p>
                 `,
+                secondaryButtonsHtml: "",
                 proofHtml: `
                     <div class="bg-white p-3.5 rounded-xl border border-slate-200 border-l-4 border-l-[#b8956a] shadow-sm">
                         <p class="text-slate-800 italic text-xs leading-relaxed font-medium">« En 45 minutes, j’ai fini avec ma semaine planifiée et trois priorités claires. Je n’ouvre plus mes mails le dimanche soir. »</p>
@@ -403,7 +412,16 @@
             }
 
             document.getElementById('form-fields').innerHTML = currentData.fieldsHtml;
-            document.getElementById('cta-buttons-container').innerHTML = currentData.buttonsHtml;
+            document.getElementById('cta-primary-container').innerHTML = currentData.ctaPrimaryHtml;
+            
+            const secContainer = document.getElementById('secondary-buttons-container');
+            if (currentData.secondaryButtonsHtml) {
+                secContainer.classList.remove('hidden');
+                secContainer.innerHTML = currentData.secondaryButtonsHtml;
+            } else {
+                secContainer.classList.add('hidden');
+            }
+
             document.getElementById('hero-proof-container').innerHTML = currentData.proofHtml;
             document.getElementById('bottom-reassurance').innerHTML = currentData.bottomReassuranceHtml;
 
