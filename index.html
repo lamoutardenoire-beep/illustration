@@ -1,9 +1,9 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audit & Démo CRO - Tunnels d'Acquisition Coachs & Indépendants</title>
+    <title>Démonstration de lecture d'une page d'inscription</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -36,19 +36,23 @@
         <div>
             <div class="flex items-center gap-2">
                 <span class="inline-block w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
-                <h1 class="text-lg font-bold text-white tracking-wide">Audit de Conversion : Premier Écran de Masterclass</h1>
+                <h1 class="text-sm md:text-base font-bold text-white tracking-wide">
+                    Cas client (entièrement anonymisé) · Démonstration de lecture d’une page d’inscription
+                </h1>
             </div>
-            <p class="text-xs text-slate-400 mt-1">Cas réel issu d'un accompagnement client (données et contexte strictly anonymisés).</p>
+            <p class="text-xs text-slate-400 mt-1 italic">
+                Ce n’est pas un manque d’effort. C’est un manque de clarté.
+            </p>
         </div>
 
-        <div class="flex items-center gap-3 bg-slate-900/80 p-1.5 rounded-lg border border-slate-700">
+        <div class="flex items-center gap-3 bg-slate-900/80 p-1.5 rounded-lg border border-slate-700 shrink-0">
             <button id="btn-before" onclick="setMode('before')" class="px-4 py-2 text-xs font-semibold rounded-md transition-all duration-200 flex items-center gap-1.5 bg-red-500/20 text-red-400 border border-red-500/30">
                 <i data-lucide="alert-triangle" class="w-4 h-4"></i>
-                AVANT (3 Frictions)
+                AVANT (Version Frictional)
             </button>
             <button id="btn-after" onclick="setMode('after')" class="px-4 py-2 text-xs font-semibold rounded-md transition-all duration-200 flex items-center gap-1.5 text-slate-400 hover:text-white">
                 <i data-lucide="check-circle-2" class="w-4 h-4"></i>
-                APRÈS (Optimisé)
+                APRÈS (Version Optimisée)
             </button>
         </div>
     </header>
@@ -79,29 +83,34 @@
             </div>
 
             <!-- Fake Webpage Content -->
-            <div class="p-6 md:p-10 min-h-[500px] flex flex-col justify-between relative bg-slate-900/40">
+            <div class="p-6 md:p-10 min-h-[520px] flex flex-col justify-between relative bg-slate-900/40">
                 
                 <!-- Dynamic Navigation -->
                 <div id="nav-container" class="border-b border-slate-800 pb-4 mb-6">
                     <!-- Injected -->
                 </div>
 
-                <!-- Hero & Form Container -->
+                <!-- Hero & Content Area -->
                 <div class="space-y-6 relative">
                     
                     <!-- Headline & Subtitle -->
                     <div class="space-y-3 relative">
-                        <h2 id="hero-title" class="text-2xl md:text-3xl font-extrabold text-white leading-tight">
+                        <h2 id="hero-title" class="text-xl md:text-2xl font-extrabold text-white leading-tight">
                             <!-- Injected -->
                         </h2>
                         <p id="hero-subtitle" class="text-xs md:text-sm text-slate-300 leading-relaxed max-w-xl">
                             <!-- Injected -->
                         </p>
 
-                        <!-- Hotspot #1 (Promesse) -->
+                        <!-- Hotspot #1 (Compréhension de la cible & Scène) -->
                         <button onclick="selectHotspot(1)" class="hotspot-btn absolute -right-2 -top-2 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-white z-20 cursor-pointer transition transform hover:scale-110 hotspot-pulse bg-red-500" id="hotspot-1">
                             1
                         </button>
+                    </div>
+
+                    <!-- Deliverable / Method Block (Only visible in After mode) -->
+                    <div id="method-block" class="relative hidden bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-2">
+                        <!-- Injected -->
                     </div>
 
                     <!-- Dynamic Form & Action Area -->
@@ -110,11 +119,11 @@
                             <!-- Injected -->
                         </div>
 
-                        <div id="cta-buttons-container" class="pt-2 flex flex-wrap gap-3">
+                        <div id="cta-buttons-container" class="pt-2 space-y-2">
                             <!-- Injected -->
                         </div>
 
-                        <!-- Hotspot #2 (Champs & Actions) -->
+                        <!-- Hotspot #2 (Méthode & Formulaire/Chemins) -->
                         <button onclick="selectHotspot(2)" class="hotspot-btn absolute -right-3 -top-3 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-white z-20 cursor-pointer transition transform hover:scale-110 hotspot-pulse bg-red-500" id="hotspot-2">
                             2
                         </button>
@@ -122,13 +131,17 @@
 
                 </div>
 
-                <!-- Proof Bar -->
-                <div class="pt-6 mt-6 border-t border-slate-800/80 relative">
+                <!-- Proof Bar & Bottom Content -->
+                <div class="pt-6 mt-6 border-t border-slate-800/80 relative space-y-4">
                     <div id="hero-proof-container" class="text-xs text-slate-400">
                         <!-- Injected -->
                     </div>
 
-                    <!-- Hotspot #3 (Preuve) -->
+                    <div id="bottom-reassurance" class="text-xs text-slate-400 border-t border-slate-800/60 pt-3">
+                        <!-- Injected -->
+                    </div>
+
+                    <!-- Hotspot #3 (Risques levés & Preuve) -->
                     <button onclick="selectHotspot(3)" class="hotspot-btn absolute right-0 top-4 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-white z-20 cursor-pointer transition transform hover:scale-110 hotspot-pulse bg-red-500" id="hotspot-3">
                         3
                     </button>
@@ -148,7 +161,7 @@
                         Diagnostic d'Audit
                     </span>
                     <span id="current-mode-tag" class="text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30">
-                        Page d'inscription Frictional
+                        Version Frictional
                     </span>
                 </div>
 
@@ -157,14 +170,14 @@
                 </div>
             </div>
 
-            <!-- Context Note Box -->
-            <div class="bg-blue-950/30 border border-blue-800/40 rounded-xl p-4 text-xs text-blue-200/80 space-y-1">
-                <div class="font-semibold text-blue-300 flex items-center gap-1.5">
-                    <i data-lucide="info" class="w-4 h-4 text-blue-400"></i>
-                    Périmètre d'analyse
+            <!-- Footer Call to Action Box -->
+            <div class="bg-gradient-to-br from-blue-950/40 to-slate-900 border border-blue-800/50 rounded-xl p-4 text-xs text-blue-200 space-y-2 shadow-lg">
+                <div class="font-bold text-white flex items-center gap-2">
+                    <i data-lucide="message-square-code" class="w-4 h-4 text-blue-400"></i>
+                    Analyse de votre propre page
                 </div>
-                <p class="leading-relaxed text-[11px]">
-                    Analyse clinique du premier écran d'inscription. Cas réel anonymisé.
+                <p class="leading-relaxed text-[11px] text-slate-300">
+                    Vous voulez qu’on regarde votre page d'inscription ? Écrivez-moi <strong class="text-white bg-blue-900/80 px-1.5 py-0.5 rounded border border-blue-700 font-mono">RAPPORT</strong> en message privé.
                 </p>
             </div>
 
@@ -175,7 +188,7 @@
     <!-- Footer -->
     <footer class="max-w-6xl w-full mx-auto mt-8 pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
         <p>© Audit & Architecture de Tunnels d'Acquisition B2B</p>
-        <p class="font-mono">Friction Cognitive & Neuromarketing</p>
+        <p class="font-mono">Analyse de la Friction Cognitive & Neuromarketing</p>
     </footer>
 
     <!-- Script Logic -->
@@ -201,40 +214,44 @@
                         </div>
                     </div>
                 `,
-                title: "« Transforme ta vie et développe ton business »",
-                subtitle: "« Rejoins ma masterclass gratuite et passe au niveau supérieur »",
+                title: "« Passez à l’étape supérieure dans votre activité »",
+                subtitle: "« Rejoignez ma masterclass gratuite et découvrez comment avancer. »",
+                methodHtml: "",
                 fieldsHtml: `
                     <input type="text" placeholder="Prénom" disabled class="bg-slate-950 border border-slate-800 rounded px-3 py-1.5 text-xs text-slate-500">
                     <input type="text" placeholder="Nom" disabled class="bg-slate-950 border border-slate-800 rounded px-3 py-1.5 text-xs text-slate-500">
                     <input type="email" placeholder="Email" disabled class="bg-slate-950 border border-slate-800 rounded px-3 py-1.5 text-xs text-slate-500">
                     <input type="tel" placeholder="Téléphone" disabled class="bg-slate-950 border border-slate-800 rounded px-3 py-1.5 text-xs text-slate-500">
                     <input type="text" placeholder="Profession" disabled class="bg-slate-950 border border-slate-800 rounded px-3 py-1.5 text-xs text-slate-500">
-                    <input type="text" placeholder="Comment m'as-tu connue ?" disabled class="bg-slate-950 border border-slate-800 rounded px-3 py-1.5 text-xs text-slate-500 md:col-span-2">
+                    <input type="text" placeholder="Comment m’avez-vous connue ?" disabled class="bg-slate-950 border border-slate-800 rounded px-3 py-1.5 text-xs text-slate-500 md:col-span-2">
                 `,
                 buttonsHtml: `
-                    <button class="bg-blue-600 text-white font-bold px-4 py-2 rounded text-xs">Je m'inscris</button>
-                    <button class="bg-slate-800 text-slate-300 font-medium px-4 py-2 rounded text-xs border border-slate-700">En savoir plus</button>
-                    <button class="bg-slate-800 text-slate-300 font-medium px-4 py-2 rounded text-xs border border-slate-700">Voir mes offres</button>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="bg-blue-600 text-white font-bold px-4 py-2 rounded text-xs">Je m’inscris</button>
+                        <button class="bg-slate-800 text-slate-300 font-medium px-4 py-2 rounded text-xs border border-slate-700">En savoir plus</button>
+                        <button class="bg-slate-800 text-slate-300 font-medium px-4 py-2 rounded text-xs border border-slate-700">Voir mes offres</button>
+                    </div>
                 `,
-                proofHtml: `<p class="italic text-slate-400">« Déjà des milliers d'abonnées conquises »</p>`,
+                proofHtml: `<p class="italic text-slate-400">« Déjà des milliers d’abonnées conquises »</p>`,
+                bottomReassuranceHtml: "",
                 hotspots: {
                     1: {
-                        q: "Friction #2 : Promesse sans méthode",
-                        status: "NOK - Absente / Floue",
-                        desc: "« Transforme ta vie » promet un résultat massif sans préciser le mécanisme ni la méthode. L'esprit ne sait pas ce qu'il va apprendre et rejette l'accroche.",
-                        impact: "Baisse de l'attention immédiate (absence de livrable clair)."
+                        q: "1. Compréhension de la visiteuse",
+                        status: "NOK - Promesse Interconnectable",
+                        desc: "« Passez à l'étape supérieure » pourrait désigner n'importe quelle offre. Rien n'indique qu'on comprend la situation vécue par la visiteuse.",
+                        impact: "Le cerveau ne se sent pas concerné et décroche."
                     },
                     2: {
-                        q: "Friction #1 : Trop de portes d'entrée",
-                        status: "NOK - Paralyse de Choix",
-                        desc: "8 liens dans le menu, 6 champs de formulaire (dont téléphone) et 3 boutons concurrents. Le prospect est submergé de micro-décisions.",
-                        impact: "Abandon massif par fuite d'attention."
+                        q: "2. Méthode & Différenciation",
+                        status: "NOK - Absente / Inconnue",
+                        desc: "On ne sait ni quoi, ni comment, ni pourquoi c'est différent d'un autre contenu gratuit. Aucune méthode nommée.",
+                        impact: "Aucune valeur perçue à s'inscrire."
                     },
                     3: {
-                        q: "Friction #9 : Preuve non spécifique",
-                        status: "NOK - Preuve Générique",
-                        desc: "« Des milliers d'abonnées » ne donne aucune précision sur le profil ni le bénéfice concret obtenu. Elle est perçue comme un slogan commercial.",
-                        impact: "Perte d'impact de la réassurance."
+                        q: "3. Parcours & Réduction des Risques",
+                        status: "NOK - Surcharge & Flou",
+                        desc: "Trois boutons, un menu à 7 liens, six champs à remplir, et rien qui rassure sur ce qui se passe après le clic.",
+                        impact: "Friction cognitive élevée : abandon avant saisie."
                     }
                 }
             },
@@ -242,42 +259,58 @@
                 navHtml: `
                     <div class="flex items-center justify-between text-xs">
                         <span class="font-bold text-white tracking-wider">LOGO</span>
-                        <span class="text-[10px] text-slate-500 font-mono">Tunnel d'Acquisition Épuré</span>
+                        <span class="text-[10px] text-slate-500 font-mono">Page d'Inscription Épurée</span>
                     </div>
                 `,
-                title: "« Apprenez à organiser votre semaine d’indépendante en 45 minutes »",
-                subtitle: "« Masterclass gratuite, jeudi à 20 h. Pour celles qui finissent leurs journées sans avoir avancé sur l’essentiel. »",
+                title: "« Organisez votre semaine d’indépendante en 45 minutes, avec la méthode des 3 blocs »",
+                subtitle: "« Vous finissez vos journées épuisée, sans avoir touché à l’essentiel. Et le dimanche soir, vous rouvrez vos mails. »",
+                methodHtml: `
+                    <p class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Vous repartez avec :</p>
+                    <ul class="text-xs text-slate-300 space-y-1 pl-4 list-disc">
+                        <li>Une semaine planifiée avec la méthode des 3 blocs : trois blocs par jour, pas une liste à rallonge</li>
+                        <li>Vos 3 tâches qui comptent vraiment</li>
+                        <li>Un modèle à réutiliser chaque dimanche</li>
+                    </ul>
+                `,
                 fieldsHtml: `
                     <input type="text" placeholder="Prénom" disabled class="bg-slate-950 border border-slate-700 rounded px-3 py-2 text-xs text-slate-300">
-                    <input type="email" placeholder="Email professionnel" disabled class="bg-slate-950 border border-slate-700 rounded px-3 py-2 text-xs text-slate-300">
+                    <input type="email" placeholder="Email" disabled class="bg-slate-950 border border-slate-700 rounded px-3 py-2 text-xs text-slate-300">
                 `,
                 buttonsHtml: `
                     <button class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-2.5 rounded text-xs transition shadow-lg shadow-emerald-600/20">Je réserve ma place</button>
+                    <p class="text-[11px] text-slate-400 font-medium leading-relaxed pt-1">
+                        🔒 <span class="text-slate-300">Gratuit, 45 minutes.</span> Un replay si vous ne pouvez pas venir. Un seul email de rappel, puis rien d’autre sans votre accord.
+                    </p>
                 `,
                 proofHtml: `
                     <div class="bg-slate-900/80 p-3 rounded-lg border border-slate-800">
-                        <p class="text-slate-300 italic">« J’ai quitté la masterclass avec ma semaine déjà planifiée. »</p>
+                        <p class="text-slate-300 italic text-xs">« En 45 minutes, j’ai fini avec ma semaine planifiée et trois priorités claires. Je n’ouvre plus mes mails le dimanche soir. »</p>
                         <p class="text-[11px] text-slate-500 mt-1 font-medium">— Camille, graphiste indépendante <span class="text-[10px] text-slate-600">(témoignage fictif)</span></p>
                     </div>
                 `,
+                bottomReassuranceHtml: `
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        <strong class="text-white">Pas un énième agenda à remplir.</strong> Avec la méthode des 3 blocs, vous ne planifiez que trois blocs par jour : ceux qui font avancer votre activité. Le reste attend.
+                    </p>
+                `,
                 hotspots: {
                     1: {
-                        q: "Friction #2 Résolue : Méthode & Livrable",
-                        status: "OK - Proposition Claire",
-                        desc: "Promesse axée sur un livrable opérationnel (« organiser sa semaine en 45 min ») et un profil cible précis (indépendantes).",
-                        impact: "Compréhension immédiate en 3 secondes."
+                        q: "1. Compréhension de la visiteuse",
+                        status: "OK - Scène Vécut Identifiée",
+                        desc: "La scène (épuisée en fin de journée, réouverture des mails le dimanche soir) montre qu'on comprend exactement ce que vit la visiteuse.",
+                        impact: "Connexion émotionnelle et sentiment immédiat d'être comprise."
                     },
                     2: {
-                        q: "Friction #1 Résolue : Action Unique",
-                        status: "OK - Tunnel Direct",
-                        desc: "Menu supprimé pour bloquer les fuites. Formulaire réduit à 2 champs essentiels (Prénom/Email) et un bouton d'engagement unique.",
-                        impact: "Suppression de la fatigue décisionnelle."
+                        q: "2. Méthode & Différenciation",
+                        status: "OK - Méthode Nommée & Livrable",
+                        desc: "La méthode est nommée (« méthode des 3 blocs »), sa différence tient en une ligne et le livrable est clair (semaine planifiée en 45 min).",
+                        impact: "Valeur perçue élevée et envie d'obtenir le résultat."
                     },
                     3: {
-                        q: "Friction #9 Résolue : Preuve Contextuelle",
-                        status: "OK - Témoignage Métier",
-                        desc: "Témoignage placé directement sous le bouton d'action, illustrant un métier précis (graphiste). La mention 'fictif' préserve la transparence.",
-                        impact: "Réduction immédiate de l'hésitation."
+                        q: "3. Parcours & Réduction des Risques",
+                        status: "OK - Chemin Unique & Risque Levé",
+                        desc: "Un seul chemin, le risque est totalement levé sous le bouton (replay, pas de spam), et la preuve spécifique vient rassurer juste à côté.",
+                        impact: "Passage à l'acte sans hésitation."
                     }
                 }
             }
@@ -291,9 +324,19 @@
             document.getElementById('nav-container').innerHTML = currentData.navHtml;
             document.getElementById('hero-title').innerText = currentData.title;
             document.getElementById('hero-subtitle').innerText = currentData.subtitle;
+            
+            const methodBlock = document.getElementById('method-block');
+            if (currentMode === 'after') {
+                methodBlock.classList.remove('hidden');
+                methodBlock.innerHTML = currentData.methodHtml;
+            } else {
+                methodBlock.classList.add('hidden');
+            }
+
             document.getElementById('form-fields').innerHTML = currentData.fieldsHtml;
             document.getElementById('cta-buttons-container').innerHTML = currentData.buttonsHtml;
             document.getElementById('hero-proof-container').innerHTML = currentData.proofHtml;
+            document.getElementById('bottom-reassurance').innerHTML = currentData.bottomReassuranceHtml;
 
             const btnBefore = document.getElementById('btn-before');
             const btnAfter = document.getElementById('btn-after');
@@ -303,12 +346,12 @@
                 btnBefore.className = "px-4 py-2 text-xs font-semibold rounded-md transition-all duration-200 flex items-center gap-1.5 bg-red-500/20 text-red-400 border border-red-500/30";
                 btnAfter.className = "px-4 py-2 text-xs font-semibold rounded-md transition-all duration-200 flex items-center gap-1.5 text-slate-400 hover:text-white";
                 modeTag.className = "text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30";
-                modeTag.innerText = "3 Frictions Clés (Avant)";
+                modeTag.innerText = "Version Frictional (Avant)";
             } else {
                 btnAfter.className = "px-4 py-2 text-xs font-semibold rounded-md transition-all duration-200 flex items-center gap-1.5 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
                 btnBefore.className = "px-4 py-2 text-xs font-semibold rounded-md transition-all duration-200 flex items-center gap-1.5 text-slate-400 hover:text-white";
                 modeTag.className = "text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
-                modeTag.innerText = "Tunnel Optimisé (Après)";
+                modeTag.innerText = "Version Optimisée (Après)";
             }
 
             for (let i = 1; i <= 3; i++) {
@@ -327,7 +370,7 @@
 
             explanationContainer.innerHTML = `
                 <div class="flex items-center justify-between">
-                    <span class="text-sm font-bold text-white">${activeInfo.q}</span>
+                    <span class="text-xs font-bold text-white">${activeInfo.q}</span>
                     <span class="text-[10px] font-bold px-2 py-0.5 rounded ${isNok ? 'bg-red-950 text-red-400 border border-red-800' : 'bg-emerald-950 text-emerald-400 border border-emerald-800'}">
                         ${activeInfo.status}
                     </span>
@@ -336,11 +379,11 @@
                     ${activeInfo.desc}
                 </p>
                 <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 mt-2">
-                    <span class="text-[11px] font-semibold text-slate-400 block mb-0.5">Analyse Neuromarketing :</span>
+                    <span class="text-[11px] font-semibold text-slate-400 block mb-0.5">Impact Neuromarketing :</span>
                     <span class="text-xs ${isNok ? 'text-red-300' : 'text-emerald-300'}">${activeInfo.impact}</span>
                 </div>
                 <div class="pt-2 flex justify-between text-[11px] text-slate-500">
-                    <span>Cliquez sur 1, 2, 3 pour naviguer</span>
+                    <span>Cliquez sur 1, 2, 3 pour explorer</span>
                     <span>Point #${activeHotspot}/3</span>
                 </div>
             `;
