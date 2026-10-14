@@ -106,19 +106,19 @@
             </div>
 
             <!-- Simulated Page Body -->
-            <div class="p-6 md:p-8 flex flex-col justify-between relative bg-[#fcfcfa] text-[#1a1a18]">
+            <div class="p-6 md:p-8 flex flex-col justify-between relative bg-[#fcfcfa] text-[#1a1a18] min-h-[520px]">
                 
                 <!-- Navbar -->
                 <div id="nav-container" class="border-b border-slate-200/80 pb-4 mb-6">
                     <!-- Injected -->
                 </div>
 
-                <!-- Main Hero 2-Column Layout -->
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start relative my-2">
+                <!-- Main Hero 2-Column Balanced Layout -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center relative my-auto">
                     
-                    <!-- Left Column: Copywriting (Span 6) -->
-                    <div class="md:col-span-6 space-y-4 relative pr-2">
-                        <div class="space-y-2 relative">
+                    <!-- Left Column: Copywriting & Balance Fill (Span 6) -->
+                    <div class="md:col-span-6 space-y-5 relative pr-2 flex flex-col justify-center">
+                        <div class="space-y-2.5 relative">
                             <h2 id="hero-title" class="text-lg md:text-xl font-extrabold text-[#1a1a18] leading-snug tracking-tight">
                                 <!-- Injected -->
                             </h2>
@@ -134,8 +134,8 @@
                             </div>
                         </div>
 
-                        <!-- Deliverables Block (AFTER Mode) -->
-                        <div id="method-block" class="hidden bg-[#b8956a]/10 border border-[#b8956a]/30 rounded-xl p-3.5 space-y-1.5">
+                        <!-- Deliverables Block (AFTER Mode) or Surcharge Notice (BEFORE Mode) -->
+                        <div id="method-block" class="hidden bg-[#b8956a]/10 border border-[#b8956a]/30 rounded-xl p-4 space-y-2">
                             <!-- Injected -->
                         </div>
                     </div>
@@ -184,7 +184,7 @@
 
                     <!-- Hotspot Pin #3 -->
                     <div class="absolute right-0 top-4" id="hotspot-wrapper-3">
-                        <button onclick="selectHotspot(3)" id="hotspot-3" class="hotspot-pin w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-[#1a1a18] relative z-10 shadow">
+                        <button onclick="selectHotspot(3)" id="hotspot-3" class="hotspot-pin w-7 h-7 rounded-full flex items-center justify-center font-extrabold text-xs text-[#1a1a18] relative z-10 shadow">
                             3
                         </button>
                     </div>
@@ -267,7 +267,17 @@
                 `,
                 title: "Passez à l’étape supérieure dans votre activité",
                 subtitle: "Rejoignez ma masterclass gratuite et découvrez comment avancer.",
-                methodHtml: "",
+                methodHtml: `
+                    <div class="bg-red-50 border border-red-200/80 rounded-xl p-3.5 space-y-1">
+                        <p class="text-[11px] font-extrabold text-red-700 uppercase tracking-wider font-mono flex items-center gap-1">
+                            <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-red-600"></i>
+                            Constat de friction :
+                        </p>
+                        <p class="text-xs text-slate-700 font-medium leading-relaxed">
+                            6 champs requis + 7 liens de fuite dans le menu. Le visiteur est submergé de choix avant même d'avoir compris la promesse.
+                        </p>
+                    </div>
+                `,
                 fieldsHtml: `
                     <input type="text" placeholder="Prénom" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-500 placeholder-slate-400">
                     <input type="text" placeholder="Nom" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-500 placeholder-slate-400">
@@ -404,7 +414,7 @@
             document.getElementById('hero-subtitle').innerText = currentData.subtitle;
             
             const methodBlock = document.getElementById('method-block');
-            if (currentMode === 'after') {
+            if (currentMode === 'after' || currentMode === 'before') {
                 methodBlock.classList.remove('hidden');
                 methodBlock.innerHTML = currentData.methodHtml;
             } else {
