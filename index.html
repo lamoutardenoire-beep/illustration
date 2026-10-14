@@ -69,7 +69,7 @@
 
         <!-- Mode Switcher -->
         <div class="flex items-center gap-1.5 bg-[#1a1a18] p-1.5 rounded-xl border border-[#33332e] shrink-0">
-            <button id="btn-before" onclick="setMode('before')" class="px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 bg-[#b8956a] text-[#1a1a18] shadow-md">
+            <button id="btn-before" onclick="setMode('before')" class="px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 bg-[#c86d51] text-white shadow-md">
                 <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
                 AVANT (Version Frictional)
             </button>
@@ -135,7 +135,7 @@
                         </div>
 
                         <!-- Deliverables Block (AFTER Mode) or Surcharge Notice (BEFORE Mode) -->
-                        <div id="method-block" class="hidden bg-[#b8956a]/10 border border-[#b8956a]/30 rounded-xl p-4 space-y-2">
+                        <div id="method-block" class="hidden rounded-xl p-4 space-y-2">
                             <!-- Injected -->
                         </div>
                     </div>
@@ -203,8 +203,8 @@
                         <i data-lucide="crosshair" class="w-4 h-4 text-[#b8956a]"></i>
                         ANALYSE CLINIQUE
                     </span>
-                    <span id="current-mode-tag" class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-md bg-[#b8956a]/15 text-[#b8956a] border border-[#b8956a]/30 font-mono">
-                        Version Frictional
+                    <span id="current-mode-tag" class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-md font-mono">
+                        <!-- Injected -->
                     </span>
                 </div>
 
@@ -267,16 +267,15 @@
                 `,
                 title: "Passez à l’étape supérieure dans votre activité",
                 subtitle: "Rejoignez ma masterclass gratuite et découvrez comment avancer.",
+                methodStyle: "bg-[#c86d51]/10 border border-[#c86d51]/30",
                 methodHtml: `
-                    <div class="bg-red-50 border border-red-200/80 rounded-xl p-3.5 space-y-1">
-                        <p class="text-[11px] font-extrabold text-red-700 uppercase tracking-wider font-mono flex items-center gap-1">
-                            <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-red-600"></i>
-                            Constat de friction :
-                        </p>
-                        <p class="text-xs text-slate-700 font-medium leading-relaxed">
-                            6 champs requis + <strong>9 portes de sortie</strong> (7 liens dans le menu + les boutons « En savoir plus » et « Voir mes offres » en bas). Trop de choix tue l'action.
-                        </p>
-                    </div>
+                    <p class="text-[11px] font-extrabold text-[#c86d51] uppercase tracking-wider font-mono flex items-center gap-1">
+                        <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+                        Constat de friction :
+                    </p>
+                    <p class="text-xs text-slate-700 font-medium leading-relaxed">
+                        6 champs requis + <strong>9 portes de sortie</strong> (7 liens dans le menu + les boutons « En savoir plus » et « Voir mes offres » en bas). Trop de choix tue l'action.
+                    </p>
                 `,
                 fieldsHtml: `
                     <input type="text" placeholder="Prénom" disabled class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-500 placeholder-slate-400">
@@ -301,18 +300,21 @@
                     1: {
                         q: "1. Compréhension de la visiteuse",
                         status: "NOK - Promesse Vague",
+                        statusStyle: "bg-[#c86d51]/20 text-[#c86d51] border border-[#c86d51]/40",
                         desc: "« Passez à l'étape supérieure » pourrait désigner n'importe quelle offre. Rien n'indique qu'on comprend la situation vécue par la visiteuse.",
                         impact: "Le cerveau ne se sent pas concerné et décroche."
                     },
                     2: {
                         q: "2. Méthode & Différenciation",
                         status: "NOK - Absente / Inconnue",
+                        statusStyle: "bg-[#c86d51]/20 text-[#c86d51] border border-[#c86d51]/40",
                         desc: "On ne sait ni quoi, ni comment, ni pourquoi c'est différent d'un autre contenu gratuit. Aucune méthode nommée.",
                         impact: "Aucune valeur perçue à s'inscrire."
                     },
                     3: {
                         q: "3. Parcours & Réduction des Risques",
                         status: "NOK - Surcharge & Flou",
+                        statusStyle: "bg-[#c86d51]/20 text-[#c86d51] border border-[#c86d51]/40",
                         desc: "9 portes de sortie au total (menu + boutons additionnels), six champs à remplir, et aucun élément de réassurance sous le clic.",
                         impact: "Friction cognitive élevée : abandon avant saisie."
                     }
@@ -322,32 +324,31 @@
                 navHtml: `
                     <div class="flex items-center justify-between text-xs">
                         <span class="font-black text-[#1a1a18] tracking-widest text-sm">LOGO</span>
-                        <span class="text-[10px] text-[#8c6d46] font-mono bg-[#b8956a]/15 px-2.5 py-1 rounded-full border border-[#b8956a]/30 font-bold">Page d'Inscription Directe</span>
+                        <span class="text-[10px] text-[#6b8e73] font-mono bg-[#6b8e73]/15 px-2.5 py-1 rounded-full border border-[#6b8e73]/30 font-bold">Page d'Inscription Directe</span>
                     </div>
                 `,
                 title: "Organisez votre semaine d’indépendante en 45 minutes, avec la méthode des 3 blocs",
                 subtitle: "Vous finissez vos journées épuisée, sans avoir touché à l’essentiel. Et le dimanche soir, vous rouvrez vos mails.",
+                methodStyle: "bg-[#6b8e73]/10 border border-[#6b8e73]/30",
                 methodHtml: `
-                    <div class="space-y-1.5">
-                        <p class="text-[11px] font-extrabold text-[#8c6d46] uppercase tracking-wider font-mono flex items-center gap-1">
-                            <i data-lucide="check-circle" class="w-3.5 h-3.5 text-[#b8956a]"></i>
-                            Vous repartez avec :
-                        </p>
-                        <ul class="text-xs text-slate-700 space-y-1.5 font-medium">
-                            <li class="flex items-start gap-1.5">
-                                <span class="text-[#b8956a] font-bold">•</span>
-                                <span><strong class="text-[#1a1a18]">Une semaine planifiée</strong> avec la méthode des 3 blocs (3 blocs par jour)</span>
-                            </li>
-                            <li class="flex items-start gap-1.5">
-                                <span class="text-[#b8956a] font-bold">•</span>
-                                <span>Vos <strong class="text-[#1a1a18]">3 tâches qui comptent vraiment</strong></span>
-                            </li>
-                            <li class="flex items-start gap-1.5">
-                                <span class="text-[#b8956a] font-bold">•</span>
-                                <span>Un <strong class="text-[#1a1a18]">modèle à réutiliser</strong> chaque dimanche</span>
-                            </li>
-                        </ul>
-                    </div>
+                    <p class="text-[11px] font-extrabold text-[#54735b] uppercase tracking-wider font-mono flex items-center gap-1">
+                        <i data-lucide="check-circle" class="w-3.5 h-3.5 text-[#6b8e73]"></i>
+                        Vous repartez avec :
+                    </p>
+                    <ul class="text-xs text-slate-700 space-y-1.5 font-medium">
+                        <li class="flex items-start gap-1.5">
+                            <span class="text-[#6b8e73] font-bold">•</span>
+                            <span><strong class="text-[#1a1a18]">Une semaine planifiée</strong> avec la méthode des 3 blocs (3 blocs par jour)</span>
+                        </li>
+                        <li class="flex items-start gap-1.5">
+                            <span class="text-[#6b8e73] font-bold">•</span>
+                            <span>Vos <strong class="text-[#1a1a18]">3 tâches qui comptent vraiment</strong></span>
+                        </li>
+                        <li class="flex items-start gap-1.5">
+                            <span class="text-[#6b8e73] font-bold">•</span>
+                            <span>Un <strong class="text-[#1a1a18]">modèle à réutiliser</strong> chaque dimanche</span>
+                        </li>
+                    </ul>
                 `,
                 fieldsHtml: `
                     <div class="space-y-1">
@@ -368,10 +369,10 @@
                 `,
                 secondaryButtonsHtml: "",
                 proofHtml: `
-                    <div class="bg-white p-3.5 rounded-xl border border-slate-200 border-l-4 border-l-[#b8956a] shadow-sm">
+                    <div class="bg-white p-3.5 rounded-xl border border-slate-200 border-l-4 border-l-[#6b8e73] shadow-sm">
                         <p class="text-slate-800 italic text-xs leading-relaxed font-medium">« En 45 minutes, j’ai fini avec ma semaine planifiée et trois priorités claires. Je n’ouvre plus mes mails le dimanche soir. »</p>
                         <p class="text-[11px] text-slate-500 mt-1.5 font-bold flex items-center gap-1.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-[#b8956a]"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#6b8e73]"></span>
                             Camille, graphiste indépendante <span class="text-[10px] text-slate-400 font-normal">(témoignage fictif)</span>
                         </p>
                     </div>
@@ -385,18 +386,21 @@
                     1: {
                         q: "1. Compréhension de la visiteuse",
                         status: "OK - Scène Vécu Identifiée",
+                        statusStyle: "bg-[#6b8e73]/20 text-[#6b8e73] border border-[#6b8e73]/40",
                         desc: "La scène (épuisée en fin de journée, réouverture des mails le dimanche soir) montre qu'on comprend exactement ce que vit la visiteuse.",
                         impact: "Connexion émotionnelle et sentiment immédiat d'être comprise."
                     },
                     2: {
                         q: "2. Méthode & Différenciation",
                         status: "OK - Méthode Nommée & Livrable",
+                        statusStyle: "bg-[#6b8e73]/20 text-[#6b8e73] border border-[#6b8e73]/40",
                         desc: "La méthode est nommée (méthode des 3 blocs), sa différence tient en une ligne et le livrable est clair (semaine planifiée en 45 min).",
                         impact: "Valeur perçue élevée et envie d'obtenir le résultat."
                     },
                     3: {
                         q: "3. Parcours & Réduction des Risques",
                         status: "OK - Chemin Unique & Risque Levé",
+                        statusStyle: "bg-[#6b8e73]/20 text-[#6b8e73] border border-[#6b8e73]/40",
                         desc: "Un seul chemin, le risque est totalement levé sous le bouton (replay, pas de spam), et la preuve spécifique vient rassurer juste à côté.",
                         impact: "Passage à l'acte sans hésitation."
                     }
@@ -414,12 +418,9 @@
             document.getElementById('hero-subtitle').innerText = currentData.subtitle;
             
             const methodBlock = document.getElementById('method-block');
-            if (currentMode === 'after' || currentMode === 'before') {
-                methodBlock.classList.remove('hidden');
-                methodBlock.innerHTML = currentData.methodHtml;
-            } else {
-                methodBlock.classList.add('hidden');
-            }
+            methodBlock.className = `rounded-xl p-4 space-y-2 ${currentData.methodStyle}`;
+            methodBlock.innerHTML = currentData.methodHtml;
+            methodBlock.classList.remove('hidden');
 
             document.getElementById('form-fields').innerHTML = currentData.fieldsHtml;
             document.getElementById('cta-primary-container').innerHTML = currentData.ctaPrimaryHtml;
@@ -440,14 +441,14 @@
             const modeTag = document.getElementById('current-mode-tag');
 
             if (currentMode === 'before') {
-                btnBefore.className = "px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 bg-red-500/20 text-red-400 border border-red-500/40 shadow-sm";
+                btnBefore.className = "px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 bg-[#c86d51] text-white shadow-md";
                 btnAfter.className = "px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 text-[#a0a09b] hover:text-[#fdfdfd]";
-                modeTag.className = "text-[10px] uppercase font-bold px-2.5 py-1 rounded-md bg-red-500/10 text-red-400 border border-red-500/30 font-mono";
+                modeTag.className = "text-[10px] uppercase font-bold px-2.5 py-1 rounded-md bg-[#c86d51]/20 text-[#c86d51] border border-[#c86d51]/40 font-mono";
                 modeTag.innerText = "Version Frictional (Avant)";
             } else {
-                btnAfter.className = "px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 bg-[#b8956a] text-[#1a1a18] shadow-md font-bold";
+                btnAfter.className = "px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 bg-[#6b8e73] text-[#1a1a18] shadow-md font-bold";
                 btnBefore.className = "px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 text-[#a0a09b] hover:text-[#fdfdfd]";
-                modeTag.className = "text-[10px] uppercase font-bold px-2.5 py-1 rounded-md bg-[#b8956a]/15 text-[#b8956a] border border-[#b8956a]/30 font-mono";
+                modeTag.className = "text-[10px] uppercase font-bold px-2.5 py-1 rounded-md bg-[#6b8e73]/20 text-[#6b8e73] border border-[#6b8e73]/40 font-mono";
                 modeTag.innerText = "Version Optimisée (Après)";
             }
 
@@ -463,12 +464,11 @@
 
             const activeInfo = currentData.hotspots[activeHotspot];
             const explanationContainer = document.getElementById('explanation-content');
-            const isNok = currentMode === 'before';
 
             explanationContainer.innerHTML = `
                 <div class="flex items-center justify-between">
                     <span class="text-xs font-extrabold text-[#fdfdfd] font-mono">${activeInfo.q}</span>
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded font-mono ${isNok ? 'bg-red-950 text-red-400 border border-red-800' : 'bg-[#b8956a]/20 text-[#b8956a] border border-[#b8956a]/40'}">
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded font-mono ${activeInfo.statusStyle}">
                         ${activeInfo.status}
                     </span>
                 </div>
