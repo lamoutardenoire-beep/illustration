@@ -16,13 +16,7 @@
         }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* Custom Brand Colors Integration */
-        .brand-bg { background-color: #1a1a18; }
-        .brand-gold { color: #b8956a; }
-        .brand-gold-bg { background-color: #b8956a; }
-        .brand-gold-border { border-color: #b8956a; }
-
-        /* Hotspot custom pulse with brand gold */
+        /* Custom Hotspot Pulsing using brand gold #b8956a */
         .hotspot-pulse-gold {
             box-shadow: 0 0 0 0 rgba(184, 149, 106, 0.8);
             animation: pulse-gold 2s infinite;
@@ -88,67 +82,74 @@
                 </div>
             </div>
 
-            <!-- Simulated Page Content (LIGHT THEME #fdfdfd / #ffffff) -->
-            <div class="p-6 md:p-10 min-h-[550px] flex flex-col justify-between relative bg-[#fdfdfd] text-[#1a1a18]">
+            <!-- Simulated Page Content (Clean Light Theme) -->
+            <div class="p-6 md:p-8 min-h-[560px] flex flex-col justify-between relative bg-[#ffffff] text-[#1a1a18]">
                 
-                <!-- Navigation -->
+                <!-- Navigation Bar -->
                 <div id="nav-container" class="border-b border-slate-200 pb-4 mb-6">
-                    <!-- Injected -->
+                    <!-- Injected via JS -->
                 </div>
 
-                <!-- Hero Content -->
-                <div class="space-y-6 relative">
+                <!-- 2-COLUMN HERO LAYOUT -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start my-auto relative">
                     
-                    <!-- Headline & Subtitle -->
-                    <div class="space-y-3 relative pr-10">
+                    <!-- LEFT COLUMN: Headline & Value Prop (Span 7) -->
+                    <div class="md:col-span-7 space-y-4 relative pr-2">
                         <h2 id="hero-title" class="text-xl md:text-2xl font-extrabold text-[#1a1a18] leading-tight tracking-tight">
                             <!-- Injected -->
                         </h2>
-                        <p id="hero-subtitle" class="text-xs md:text-sm text-slate-600 leading-relaxed max-w-xl font-medium">
+                        
+                        <p id="hero-subtitle" class="text-xs md:text-sm text-slate-600 leading-relaxed font-medium">
                             <!-- Injected -->
                         </p>
 
-                        <!-- Hotspot #1 -->
-                        <button onclick="selectHotspot(1)" class="hotspot-btn absolute right-0 top-0 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-white z-25 cursor-pointer transition transform hover:scale-110 hotspot-pulse-gold bg-[#b8956a] shadow-md" id="hotspot-1">
+                        <!-- Deliverable / Method Block (Only in AFTER mode) -->
+                        <div id="method-block" class="hidden bg-[#b8956a]/10 border border-[#b8956a]/30 rounded-xl p-4 space-y-2 mt-4">
+                            <!-- Injected -->
+                        </div>
+
+                        <!-- Hotspot #1 (Title / Value Prop) -->
+                        <button onclick="selectHotspot(1)" class="hotspot-btn absolute -right-3 -top-2 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-[#1a1a18] z-25 cursor-pointer transition transform hover:scale-110 hotspot-pulse-gold bg-[#b8956a] shadow-md" id="hotspot-1">
                             1
                         </button>
                     </div>
 
-                    <!-- Deliverable / Method Block -->
-                    <div id="method-block" class="relative hidden bg-[#b8956a]/10 border border-[#b8956a]/30 rounded-xl p-4.5 space-y-2">
-                        <!-- Injected -->
-                    </div>
+                    <!-- RIGHT COLUMN: Registration Form (Span 5) -->
+                    <div class="md:col-span-5 relative">
+                        <div class="bg-slate-50 border border-slate-200/90 rounded-2xl p-5 space-y-4 shadow-sm">
+                            <h3 class="text-xs font-extrabold text-slate-800 uppercase tracking-wider text-center border-b border-slate-200 pb-2">
+                                Inscription à la Masterclass
+                            </h3>
+                            
+                            <div id="form-fields" class="space-y-2.5">
+                                <!-- Injected -->
+                            </div>
 
-                    <!-- Form & Action Area -->
-                    <div class="relative bg-white border border-slate-200 rounded-2xl p-5 md:p-6 space-y-4 shadow-sm">
-                        <div id="form-fields" class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <!-- Injected -->
+                            <div id="cta-buttons-container" class="pt-2 space-y-2">
+                                <!-- Injected -->
+                            </div>
                         </div>
 
-                        <div id="cta-buttons-container" class="pt-2 space-y-2">
-                            <!-- Injected -->
-                        </div>
-
-                        <!-- Hotspot #2 -->
-                        <button onclick="selectHotspot(2)" class="hotspot-btn absolute -right-3 -top-3 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-white z-25 cursor-pointer transition transform hover:scale-110 hotspot-pulse-gold bg-[#b8956a] shadow-md" id="hotspot-2">
+                        <!-- Hotspot #2 (Form & CTA) -->
+                        <button onclick="selectHotspot(2)" class="hotspot-btn absolute -right-3 -top-3 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-[#1a1a18] z-25 cursor-pointer transition transform hover:scale-110 hotspot-pulse-gold bg-[#b8956a] shadow-md" id="hotspot-2">
                             2
                         </button>
                     </div>
 
                 </div>
 
-                <!-- Proof & Bottom Section -->
-                <div class="pt-6 mt-6 border-t border-slate-200 relative space-y-4">
+                <!-- BOTTOM PROOF SECTION -->
+                <div class="pt-6 mt-6 border-t border-slate-200 relative space-y-3">
                     <div id="hero-proof-container" class="text-xs text-slate-600">
                         <!-- Injected -->
                     </div>
 
-                    <div id="bottom-reassurance" class="text-xs text-slate-600 border-t border-slate-200 pt-3">
+                    <div id="bottom-reassurance" class="text-xs text-slate-600 border-t border-slate-100 pt-3">
                         <!-- Injected -->
                     </div>
 
-                    <!-- Hotspot #3 -->
-                    <button onclick="selectHotspot(3)" class="hotspot-btn absolute right-0 top-4 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-white z-25 cursor-pointer transition transform hover:scale-110 hotspot-pulse-gold bg-[#b8956a] shadow-md" id="hotspot-3">
+                    <!-- Hotspot #3 (Proof & Reassurance) -->
+                    <button onclick="selectHotspot(3)" class="hotspot-btn absolute right-0 top-4 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-[#1a1a18] z-25 cursor-pointer transition transform hover:scale-110 hotspot-pulse-gold bg-[#b8956a] shadow-md" id="hotspot-3">
                         3
                     </button>
                 </div>
@@ -215,7 +216,7 @@
                 navHtml: `
                     <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500">
                         <span class="font-extrabold text-[#1a1a18] tracking-widest text-sm">LOGO</span>
-                        <div class="flex flex-wrap gap-3 text-[11px] font-medium">
+                        <div class="flex flex-wrap gap-2.5 text-[11px] font-medium">
                             <span class="hover:text-slate-900 cursor-pointer">Accueil</span>
                             <span class="hover:text-slate-900 cursor-pointer">À propos</span>
                             <span class="hover:text-slate-900 cursor-pointer">Blog</span>
@@ -231,18 +232,18 @@
                 subtitle: "Rejoignez ma masterclass gratuite et découvrez comment avancer.",
                 methodHtml: "",
                 fieldsHtml: `
-                    <input type="text" placeholder="Prénom" disabled class="bg-slate-100 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
-                    <input type="text" placeholder="Nom" disabled class="bg-slate-100 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
-                    <input type="email" placeholder="Email" disabled class="bg-slate-100 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
-                    <input type="tel" placeholder="Téléphone" disabled class="bg-slate-100 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
-                    <input type="text" placeholder="Profession" disabled class="bg-slate-100 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
-                    <input type="text" placeholder="Comment m’avez-vous connue ?" disabled class="bg-slate-100 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400 md:col-span-2">
+                    <input type="text" placeholder="Prénom" disabled class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
+                    <input type="text" placeholder="Nom" disabled class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
+                    <input type="email" placeholder="Email" disabled class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
+                    <input type="tel" placeholder="Téléphone" disabled class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
+                    <input type="text" placeholder="Profession" disabled class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
+                    <input type="text" placeholder="Comment m’avez-vous connue ?" disabled class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
                 `,
                 buttonsHtml: `
-                    <div class="flex flex-wrap gap-2 pt-1">
-                        <button class="bg-[#1a1a18] hover:bg-black text-[#fdfdfd] font-bold px-5 py-2.5 rounded-lg text-xs shadow-sm">Je m’inscris</button>
-                        <button class="bg-slate-100 text-slate-700 font-medium px-4 py-2.5 rounded-lg text-xs border border-slate-300">En savoir plus</button>
-                        <button class="bg-slate-100 text-slate-700 font-medium px-4 py-2.5 rounded-lg text-xs border border-slate-300">Voir mes offres</button>
+                    <div class="flex flex-col gap-2 pt-1">
+                        <button class="w-full bg-[#1a1a18] hover:bg-black text-[#fdfdfd] font-bold px-4 py-2.5 rounded-lg text-xs shadow-sm">Je m’inscris</button>
+                        <button class="w-full bg-white text-slate-700 font-medium px-4 py-2 rounded-lg text-xs border border-slate-300">En savoir plus</button>
+                        <button class="w-full bg-white text-slate-700 font-medium px-4 py-2 rounded-lg text-xs border border-slate-300">Voir mes offres</button>
                     </div>
                 `,
                 proofHtml: `<p class="italic text-slate-500 font-medium">Déjà des milliers d’abonnées conquises</p>`,
@@ -282,10 +283,10 @@
                         <svg class="w-4 h-4 text-[#b8956a]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                         Vous repartez avec :
                     </p>
-                    <ul class="text-xs text-slate-700 space-y-2 pt-1 pl-1 font-medium">
+                    <ul class="text-xs text-slate-700 space-y-2 pt-1 font-medium">
                         <li class="flex items-start gap-2">
                             <span class="text-[#b8956a] font-bold">•</span>
-                            <span><strong class="text-[#1a1a18]">Une semaine planifiée</strong> avec la méthode des 3 blocs : trois blocs par jour, pas une liste à rallonge</span>
+                            <span><strong class="text-[#1a1a18]">Une semaine planifiée</strong> avec la méthode des 3 blocs : trois blocs par jour</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <span class="text-[#b8956a] font-bold">•</span>
@@ -298,18 +299,24 @@
                     </ul>
                 `,
                 fieldsHtml: `
-                    <input type="text" placeholder="Prénom" disabled class="bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 placeholder-slate-400">
-                    <input type="email" placeholder="Adresse email" disabled class="bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 placeholder-slate-400">
+                    <div class="space-y-1">
+                        <label class="text-[11px] font-semibold text-slate-700">Votre Prénom</label>
+                        <input type="text" placeholder="Ex: Julie" disabled class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 placeholder-slate-400">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[11px] font-semibold text-slate-700">Votre Adresse email</label>
+                        <input type="email" placeholder="julie@independante.com" disabled class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 placeholder-slate-400">
+                    </div>
                 `,
                 buttonsHtml: `
-                    <button class="bg-[#b8956a] hover:bg-[#a6845c] text-[#1a1a18] font-extrabold px-6 py-3 rounded-xl text-xs transition shadow-lg shadow-[#b8956a]/20 w-full sm:w-auto">Je réserve ma place</button>
-                    <p class="text-[11px] text-slate-500 font-medium leading-relaxed pt-1.5 flex items-center gap-1">
+                    <button class="w-full bg-[#b8956a] hover:bg-[#a6845c] text-[#1a1a18] font-extrabold px-6 py-3 rounded-xl text-xs transition shadow-lg shadow-[#b8956a]/20">Je réserve ma place</button>
+                    <p class="text-[11px] text-slate-500 font-medium leading-relaxed pt-1.5 flex items-start gap-1">
                         <span>🔒</span>
                         <span><strong class="text-slate-800">Gratuit, 45 minutes.</strong> Un replay si vous ne pouvez pas venir. Un seul email de rappel, puis rien d’autre sans votre accord.</span>
                     </p>
                 `,
                 proofHtml: `
-                    <div class="bg-white p-4 rounded-xl border border-slate-200 border-l-4 border-l-[#b8956a] shadow-sm">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 border-l-4 border-l-[#b8956a]">
                         <p class="text-slate-800 italic text-xs leading-relaxed font-medium">En 45 minutes, j’ai fini avec ma semaine planifiée et trois priorités claires. Je n’ouvre plus mes mails le dimanche soir.</p>
                         <p class="text-[11px] text-slate-500 mt-2 font-semibold flex items-center gap-1.5">
                             <span class="w-1.5 h-1.5 rounded-full bg-[#b8956a]"></span>
@@ -318,7 +325,7 @@
                     </div>
                 `,
                 bottomReassuranceHtml: `
-                    <p class="text-xs text-slate-700 leading-relaxed bg-slate-100/70 p-3.5 rounded-xl border border-slate-200/80 font-medium">
+                    <p class="text-xs text-slate-700 leading-relaxed bg-slate-50 p-3.5 rounded-xl border border-slate-200/80 font-medium">
                         <strong class="text-[#1a1a18]">Pas un énième agenda à remplir.</strong> Avec la méthode des 3 blocs, vous ne planifiez que trois blocs par jour : ceux qui font avancer votre activité. Le reste attend.
                     </p>
                 `,
@@ -385,7 +392,7 @@
 
             for (let i = 1; i <= 3; i++) {
                 const hs = document.getElementById(`hotspot-${i}`);
-                hs.className = `hotspot-btn absolute w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-[#1a1a18] z-25 cursor-pointer transition transform hover:scale-110 hotspot-pulse-gold bg-[#b8956a] shadow-md ${i === 1 ? 'right-0 top-0' : i === 2 ? '-right-3 -top-3' : 'right-0 top-4'} ${activeHotspot === i ? 'ring-4 ring-white scale-110' : ''}`;
+                hs.className = `hotspot-btn absolute w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-[#1a1a18] z-25 cursor-pointer transition transform hover:scale-110 hotspot-pulse-gold bg-[#b8956a] shadow-md ${i === 1 ? '-right-3 -top-2' : i === 2 ? '-right-3 -top-3' : 'right-0 top-4'} ${activeHotspot === i ? 'ring-4 ring-white scale-110' : ''}`;
                 hs.style.display = showAnnotations ? 'flex' : 'none';
             }
 
