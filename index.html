@@ -3,195 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Démonstration de lecture d'une page d'inscription</title>
+    <title>Analyse Clinique CRO — Lecture de Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap');
         
+        :root {
+            --bg-main: #1a1a18;
+            --brand-gold: #b8956a;
+            --brand-gold-light: #d4b48c;
+            --card-dark: #232320;
+            --border-dark: #33332e;
+        }
+
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #1a1a18;
+            background-color: var(--bg-main);
             color: #fdfdfd;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(184, 149, 106, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(184, 149, 106, 0.03) 0%, transparent 40%);
         }
+
         .font-mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* Custom Hotspot Pulsing using brand gold #b8956a */
-        .hotspot-pulse-gold {
-            box-shadow: 0 0 0 0 rgba(184, 149, 106, 0.8);
-            animation: pulse-gold 2s infinite;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1a1a18; }
+        ::-webkit-scrollbar-thumb { background: #33332e; border-radius: 3px; }
+
+        /* Hotspot Pin Animation */
+        .hotspot-pin {
+            background: linear-gradient(135deg, #b8956a 0%, #8c6d46 100%);
+            box-shadow: 0 4px 14px rgba(184, 149, 106, 0.4);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        @keyframes pulse-gold {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(184, 149, 106, 0.8); }
-            70% { transform: scale(1.08); box-shadow: 0 0 0 12px rgba(184, 149, 106, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(184, 149, 106, 0); }
+        .hotspot-pin:hover {
+            transform: scale(1.15) translateY(-2px);
+            box-shadow: 0 6px 20px rgba(184, 149, 106, 0.6);
+        }
+        .hotspot-active {
+            ring: 3px solid #ffffff;
+            transform: scale(1.15);
+            background: #ffffff !important;
+            color: #1a1a18 !important;
+        }
+
+        .pulse-ring {
+            position: absolute;
+            inset: -4px;
+            border-radius: 9999px;
+            border: 1.5px solid rgba(184, 149, 106, 0.6);
+            animation: ring-expand 2s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes ring-expand {
+            0% { transform: scale(0.9); opacity: 0.8; }
+            100% { transform: scale(1.5); opacity: 0; }
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between p-4 md:p-8">
+<body class="min-h-screen flex flex-col justify-between p-4 md:p-8 selection:bg-[#b8956a] selection:text-[#1a1a18]">
 
-    <!-- Top Header Bar -->
-    <header class="max-w-6xl w-full mx-auto mb-6 flex flex-col md:flex-row items-center justify-between gap-4 bg-[#232320] backdrop-blur border border-[#333330] p-4 md:p-5 rounded-2xl shadow-2xl">
-        <div>
-            <div class="flex items-center gap-2.5">
-                <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#b8956a] animate-pulse"></span>
-                <h1 class="text-sm md:text-base font-bold text-[#fdfdfd] tracking-wide">
-                    Cas client (entièrement anonymisé) · Démonstration de lecture d’une page d’inscription
-                </h1>
+    <!-- Top App Header -->
+    <header class="max-w-7xl w-full mx-auto mb-8 bg-[#232320]/90 backdrop-blur-xl border border-[#33332e] p-4 md:p-5 rounded-2xl shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3.5">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#b8956a] to-[#8c6d46] flex items-center justify-center text-[#1a1a18] font-black text-sm shadow-lg shadow-[#b8956a]/20">
+                CRO
             </div>
-            <p class="text-xs text-[#a0a09b] mt-1 italic font-medium">
-                Ce n’est pas un manque d’effort. C’est un manque de clarté.
-            </p>
+            <div>
+                <div class="flex items-center gap-2">
+                    <h1 class="text-sm md:text-base font-extrabold text-[#fdfdfd] tracking-tight">
+                        Cas client (entièrement anonymisé) · Démonstration de lecture d’une page d’inscription
+                    </h1>
+                </div>
+                <p class="text-xs text-[#a0a09b] font-medium mt-0.5">
+                    <span class="text-[#b8956a] font-semibold">Diagnostic de friction cognitive :</span> Ce n’est pas un manque d’effort. C’est un manque de clarté.
+                </p>
+            </div>
         </div>
 
         <!-- Mode Switcher -->
-        <div class="flex items-center gap-2 bg-[#1a1a18] p-1.5 rounded-xl border border-[#333330] shrink-0">
-            <button id="btn-before" onclick="setMode('before')" class="px-4 py-2 text-xs font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 bg-[#b8956a]/15 text-[#b8956a] border border-[#b8956a]/30">
-                <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+        <div class="flex items-center gap-1.5 bg-[#1a1a18] p-1.5 rounded-xl border border-[#33332e] shrink-0">
+            <button id="btn-before" onclick="setMode('before')" class="px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 bg-[#b8956a] text-[#1a1a18] shadow-md">
+                <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
                 AVANT (Version Frictional)
             </button>
-            <button id="btn-after" onclick="setMode('after')" class="px-4 py-2 text-xs font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 text-[#a0a09b] hover:text-[#fdfdfd]">
-                <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+            <button id="btn-after" onclick="setMode('after')" class="px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 text-[#a0a09b] hover:text-[#fdfdfd]">
+                <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
                 APRÈS (Version Optimisée)
             </button>
         </div>
     </header>
 
-    <!-- Main Container -->
-    <main class="max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+    <!-- Main Grid -->
+    <main class="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        <!-- Preview Screen (Column 1-8) -->
-        <div class="lg:col-span-8 bg-[#232320] border border-[#333330] rounded-2xl overflow-hidden shadow-2xl relative">
+        <!-- Left: Simulator Window (Span 8) -->
+        <div class="lg:col-span-8 bg-[#232320] border border-[#33332e] rounded-2xl overflow-hidden shadow-2xl relative">
             
-            <!-- Browser Frame Bar -->
-            <div class="bg-[#1a1a18] border-b border-[#333330] px-4 py-3 flex items-center justify-between">
+            <!-- Window Control Bar -->
+            <div class="bg-[#1a1a18] border-b border-[#33332e] px-4 py-3 flex items-center justify-between">
                 <div class="flex items-center space-x-2">
-                    <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-                    <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                    <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                    <div class="w-3 h-3 rounded-full bg-red-500/60"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500/60"></div>
+                    <div class="w-3 h-3 rounded-full bg-emerald-500/60"></div>
                 </div>
-                <div class="bg-[#232320] border border-[#333330] rounded-lg px-3 py-1 text-[11px] text-[#a0a09b] flex items-center gap-2 w-1/2 justify-center font-mono">
+                
+                <div class="bg-[#232320] border border-[#33332e] rounded-lg px-4 py-1 text-[11px] text-[#a0a09b] flex items-center gap-2 w-1/2 justify-center font-mono">
                     <i data-lucide="lock" class="w-3 h-3 text-[#b8956a]"></i>
-                    https://masterclass-independante.com/inscription
+                    <span class="truncate">https://masterclass-independante.com/inscription</span>
                 </div>
-                <div>
-                    <button onclick="toggleAnnotations()" id="btn-toggle-ann" class="text-xs bg-[#2e2e2a] hover:bg-[#3a3a35] text-[#fdfdfd] px-3 py-1.5 rounded-lg border border-[#444440] flex items-center gap-1.5 transition font-medium">
-                        <i data-lucide="eye" class="w-3.5 h-3.5"></i>
-                        <span id="ann-status-text">Masquer Annotations</span>
-                    </button>
-                </div>
+
+                <button onclick="toggleAnnotations()" id="btn-toggle-ann" class="text-xs bg-[#2b2b27] hover:bg-[#363631] text-[#fdfdfd] px-3 py-1.5 rounded-lg border border-[#3d3d38] flex items-center gap-1.5 transition font-semibold">
+                    <i data-lucide="eye" class="w-3.5 h-3.5 text-[#b8956a]"></i>
+                    <span id="ann-status-text">Masquer Annotations</span>
+                </button>
             </div>
 
-            <!-- Simulated Page Content (Clean Light Theme) -->
-            <div class="p-6 md:p-8 min-h-[560px] flex flex-col justify-between relative bg-[#ffffff] text-[#1a1a18]">
+            <!-- Simulated Page Body (Refined Off-White Theme #fbfbfa) -->
+            <div class="p-6 md:p-10 min-h-[580px] flex flex-col justify-between relative bg-[#fbfbfa] text-[#1a1a18]">
                 
-                <!-- Navigation Bar -->
-                <div id="nav-container" class="border-b border-slate-200 pb-4 mb-6">
-                    <!-- Injected via JS -->
+                <!-- Navbar -->
+                <div id="nav-container" class="border-b border-slate-200/80 pb-4 mb-8">
+                    <!-- Injected -->
                 </div>
 
-                <!-- 2-COLUMN HERO LAYOUT -->
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start my-auto relative">
+                <!-- Main Hero 2-Column Layout -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start my-auto relative">
                     
-                    <!-- LEFT COLUMN: Headline & Value Prop (Span 7) -->
-                    <div class="md:col-span-7 space-y-4 relative pr-2">
-                        <h2 id="hero-title" class="text-xl md:text-2xl font-extrabold text-[#1a1a18] leading-tight tracking-tight">
-                            <!-- Injected -->
-                        </h2>
-                        
-                        <p id="hero-subtitle" class="text-xs md:text-sm text-slate-600 leading-relaxed font-medium">
-                            <!-- Injected -->
-                        </p>
+                    <!-- Left Column: Copywriting -->
+                    <div class="md:col-span-7 space-y-5 relative pr-2">
+                        <div class="space-y-2 relative">
+                            <h2 id="hero-title" class="text-xl md:text-2xl font-extrabold text-[#1a1a18] leading-[1.25] tracking-tight">
+                                <!-- Injected -->
+                            </h2>
+                            <p id="hero-subtitle" class="text-xs md:text-sm text-slate-600 leading-relaxed font-medium">
+                                <!-- Injected -->
+                            </p>
 
-                        <!-- Deliverable / Method Block (Only in AFTER mode) -->
-                        <div id="method-block" class="hidden bg-[#b8956a]/10 border border-[#b8956a]/30 rounded-xl p-4 space-y-2 mt-4">
-                            <!-- Injected -->
+                            <!-- Hotspot Pin #1 -->
+                            <div class="absolute -right-4 -top-2" id="hotspot-wrapper-1">
+                                <button onclick="selectHotspot(1)" id="hotspot-1" class="hotspot-pin w-8 h-8 rounded-full flex items-center justify-center font-extrabold text-xs text-[#1a1a18] relative z-10">
+                                    1
+                                    <span class="pulse-ring"></span>
+                                </button>
+                            </div>
                         </div>
 
-                        <!-- Hotspot #1 (Title / Value Prop) -->
-                        <button onclick="selectHotspot(1)" class="hotspot-btn absolute -right-3 -top-2 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-[#1a1a18] z-25 cursor-pointer transition transform hover:scale-110 hotspot-pulse-gold bg-[#b8956a] shadow-md" id="hotspot-1">
-                            1
-                        </button>
+                        <!-- Deliverables Block (AFTER Mode) -->
+                        <div id="method-block" class="hidden bg-[#b8956a]/10 border border-[#b8956a]/30 rounded-xl p-4.5 space-y-2 mt-4">
+                            <!-- Injected -->
+                        </div>
                     </div>
 
-                    <!-- RIGHT COLUMN: Registration Form (Span 5) -->
+                    <!-- Right Column: Registration Card -->
                     <div class="md:col-span-5 relative">
-                        <div class="bg-slate-50 border border-slate-200/90 rounded-2xl p-5 space-y-4 shadow-sm">
-                            <h3 class="text-xs font-extrabold text-slate-800 uppercase tracking-wider text-center border-b border-slate-200 pb-2">
-                                Inscription à la Masterclass
-                            </h3>
-                            
-                            <div id="form-fields" class="space-y-2.5">
+                        <div class="bg-white border border-slate-200 rounded-2xl p-5 md:p-6 space-y-4 shadow-xl shadow-slate-200/50">
+                            <div class="text-center border-b border-slate-100 pb-3">
+                                <span class="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider font-mono">Formulaire d'Accès</span>
+                            </div>
+
+                            <div id="form-fields" class="space-y-3">
                                 <!-- Injected -->
                             </div>
 
-                            <div id="cta-buttons-container" class="pt-2 space-y-2">
+                            <div id="cta-buttons-container" class="pt-2 space-y-2.5">
                                 <!-- Injected -->
                             </div>
                         </div>
 
-                        <!-- Hotspot #2 (Form & CTA) -->
-                        <button onclick="selectHotspot(2)" class="hotspot-btn absolute -right-3 -top-3 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-[#1a1a18] z-25 cursor-pointer transition transform hover:scale-110 hotspot-pulse-gold bg-[#b8956a] shadow-md" id="hotspot-2">
-                            2
-                        </button>
+                        <!-- Hotspot Pin #2 -->
+                        <div class="absolute -right-3 -top-3" id="hotspot-wrapper-2">
+                            <button onclick="selectHotspot(2)" id="hotspot-2" class="hotspot-pin w-8 h-8 rounded-full flex items-center justify-center font-extrabold text-xs text-[#1a1a18] relative z-10">
+                                2
+                                <span class="pulse-ring"></span>
+                            </button>
+                        </div>
                     </div>
 
                 </div>
 
-                <!-- BOTTOM PROOF SECTION -->
-                <div class="pt-6 mt-6 border-t border-slate-200 relative space-y-3">
+                <!-- Proof & Reassurance Footer -->
+                <div class="pt-8 mt-8 border-t border-slate-200/80 relative space-y-4">
                     <div id="hero-proof-container" class="text-xs text-slate-600">
                         <!-- Injected -->
                     </div>
 
-                    <div id="bottom-reassurance" class="text-xs text-slate-600 border-t border-slate-100 pt-3">
+                    <div id="bottom-reassurance" class="text-xs text-slate-600">
                         <!-- Injected -->
                     </div>
 
-                    <!-- Hotspot #3 (Proof & Reassurance) -->
-                    <button onclick="selectHotspot(3)" class="hotspot-btn absolute right-0 top-4 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-[#1a1a18] z-25 cursor-pointer transition transform hover:scale-110 hotspot-pulse-gold bg-[#b8956a] shadow-md" id="hotspot-3">
-                        3
-                    </button>
+                    <!-- Hotspot Pin #3 -->
+                    <div class="absolute right-0 top-6" id="hotspot-wrapper-3">
+                        <button onclick="selectHotspot(3)" id="hotspot-3" class="hotspot-pin w-8 h-8 rounded-full flex items-center justify-center font-extrabold text-xs text-[#1a1a18] relative z-10">
+                            3
+                            <span class="pulse-ring"></span>
+                        </button>
+                    </div>
                 </div>
 
             </div>
         </div>
 
-        <!-- Diagnostic Panel (Column 9-12) -->
-        <div class="lg:col-span-4 space-y-4">
+        <!-- Right: Diagnostic Panel (Span 4) -->
+        <div class="lg:col-span-4 space-y-5">
             
-            <!-- Main Explanation Box -->
-            <div class="bg-[#232320] border border-[#333330] rounded-2xl p-5 shadow-2xl backdrop-blur">
-                <div class="flex items-center justify-between pb-3.5 mb-3.5 border-b border-[#333330]">
-                    <span class="text-xs font-bold uppercase tracking-wider text-[#a0a09b] flex items-center gap-2">
+            <!-- Audit Card -->
+            <div class="bg-[#232320] border border-[#33332e] rounded-2xl p-6 shadow-2xl relative overflow-hidden">
+                <div class="flex items-center justify-between pb-4 mb-4 border-b border-[#33332e]">
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#a0a09b] flex items-center gap-2 font-mono">
                         <i data-lucide="crosshair" class="w-4 h-4 text-[#b8956a]"></i>
-                        Diagnostic d'Audit
+                        ANALYSE CLINIQUE
                     </span>
-                    <span id="current-mode-tag" class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-md bg-[#b8956a]/15 text-[#b8956a] border border-[#b8956a]/30">
+                    <span id="current-mode-tag" class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-md bg-[#b8956a]/15 text-[#b8956a] border border-[#b8956a]/30 font-mono">
                         Version Frictional
                     </span>
                 </div>
 
-                <div id="explanation-content" class="space-y-3">
+                <div id="explanation-content" class="space-y-4">
                     <!-- Injected -->
                 </div>
             </div>
 
-            <!-- Call to Action Box in Brand Colors -->
-            <div class="bg-gradient-to-b from-[#232320] to-[#1a1a18] border border-[#b8956a]/30 rounded-2xl p-5 text-xs text-slate-300 space-y-3 shadow-xl">
-                <div class="font-bold text-[#fdfdfd] flex items-center gap-2 text-sm">
-                    <div class="w-8 h-8 rounded-lg bg-[#b8956a]/15 border border-[#b8956a]/30 flex items-center justify-center text-[#b8956a] shrink-0">
-                        <i data-lucide="message-square" class="w-4 h-4"></i>
+            <!-- Sleek CTA Box -->
+            <div class="bg-gradient-to-br from-[#232320] via-[#1f1f1d] to-[#1a1a18] border border-[#b8956a]/30 rounded-2xl p-5 shadow-2xl space-y-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-[#b8956a]/15 border border-[#b8956a]/30 flex items-center justify-center text-[#b8956a] shrink-0 shadow-inner">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i>
                     </div>
-                    <span>Analyse de votre propre page</span>
+                    <div>
+                        <h4 class="text-xs font-bold text-[#fdfdfd]">Analyse de votre propre page</h4>
+                        <p class="text-[11px] text-[#a0a09b] mt-0.5">Vous voulez une lecture sans filtre ?</p>
+                    </div>
                 </div>
-                <p class="leading-relaxed text-[#a0a09b]">
-                    Vous voulez qu’on regarde votre page d'inscription ?
-                </p>
-                <div class="pt-1 flex items-center gap-2">
-                    <span class="text-[#a0a09b]">Écrivez-moi</span>
-                    <span class="bg-[#b8956a] text-[#1a1a18] font-mono font-bold px-2.5 py-1 rounded-md text-xs shadow-md tracking-wide">RAPPORT</span>
-                    <span class="text-[#a0a09b]">en MP.</span>
+                
+                <div class="pt-2 border-t border-[#33332e] flex items-center justify-between">
+                    <span class="text-xs text-[#a0a09b]">Envoyez-moi</span>
+                    <span class="bg-[#b8956a] text-[#1a1a18] font-mono font-extrabold px-3 py-1 rounded-lg text-xs shadow-md tracking-wider">RAPPORT</span>
+                    <span class="text-xs text-[#a0a09b]">en MP.</span>
                 </div>
             </div>
 
@@ -200,9 +252,9 @@
     </main>
 
     <!-- Footer -->
-    <footer class="max-w-6xl w-full mx-auto mt-8 pt-4 border-t border-[#333330] flex flex-col sm:flex-row items-center justify-between text-xs text-[#a0a09b] gap-2">
-        <p>© Audit & Architecture de Tunnels d'Acquisition B2B</p>
-        <p class="font-mono">Analyse de la Friction Cognitive & Neuromarketing</p>
+    <footer class="max-w-7xl w-full mx-auto mt-10 pt-4 border-t border-[#33332e] flex flex-col sm:flex-row items-center justify-between text-xs text-[#a0a09b] gap-2">
+        <p>© Audit & Architecture de Tunnels d'Acquisition</p>
+        <p class="font-mono text-[11px]">Diagnostic Neuromarketing & Friction Cognitive</p>
     </footer>
 
     <!-- Script Logic -->
@@ -214,17 +266,17 @@
         const data = {
             before: {
                 navHtml: `
-                    <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500">
-                        <span class="font-extrabold text-[#1a1a18] tracking-widest text-sm">LOGO</span>
-                        <div class="flex flex-wrap gap-2.5 text-[11px] font-medium">
-                            <span class="hover:text-slate-900 cursor-pointer">Accueil</span>
-                            <span class="hover:text-slate-900 cursor-pointer">À propos</span>
-                            <span class="hover:text-slate-900 cursor-pointer">Blog</span>
-                            <span class="hover:text-slate-900 cursor-pointer">Contact</span>
+                    <div class="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500">
+                        <span class="font-black text-[#1a1a18] tracking-widest text-base">LOGO</span>
+                        <div class="flex flex-wrap gap-3.5 text-[11px] font-medium text-slate-600">
+                            <span class="hover:text-[#1a1a18] cursor-pointer">Accueil</span>
+                            <span class="hover:text-[#1a1a18] cursor-pointer">À propos</span>
+                            <span class="hover:text-[#1a1a18] cursor-pointer">Blog</span>
+                            <span class="hover:text-[#1a1a18] cursor-pointer">Contact</span>
                             <span class="text-slate-300">|</span>
-                            <span class="hover:text-slate-900 cursor-pointer">Instagram</span>
-                            <span class="hover:text-slate-900 cursor-pointer">Facebook</span>
-                            <span class="hover:text-slate-900 cursor-pointer">YouTube</span>
+                            <span class="hover:text-[#1a1a18] cursor-pointer">Instagram</span>
+                            <span class="hover:text-[#1a1a18] cursor-pointer">Facebook</span>
+                            <span class="hover:text-[#1a1a18] cursor-pointer">YouTube</span>
                         </div>
                     </div>
                 `,
@@ -232,18 +284,18 @@
                 subtitle: "Rejoignez ma masterclass gratuite et découvrez comment avancer.",
                 methodHtml: "",
                 fieldsHtml: `
-                    <input type="text" placeholder="Prénom" disabled class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
-                    <input type="text" placeholder="Nom" disabled class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
-                    <input type="email" placeholder="Email" disabled class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
-                    <input type="tel" placeholder="Téléphone" disabled class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
-                    <input type="text" placeholder="Profession" disabled class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
-                    <input type="text" placeholder="Comment m’avez-vous connue ?" disabled class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-500 placeholder-slate-400">
+                    <input type="text" placeholder="Prénom" disabled class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-500 placeholder-slate-400">
+                    <input type="text" placeholder="Nom" disabled class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-500 placeholder-slate-400">
+                    <input type="email" placeholder="Email" disabled class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-500 placeholder-slate-400">
+                    <input type="tel" placeholder="Téléphone" disabled class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-500 placeholder-slate-400">
+                    <input type="text" placeholder="Profession" disabled class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-500 placeholder-slate-400">
+                    <input type="text" placeholder="Comment m’avez-vous connue ?" disabled class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-500 placeholder-slate-400">
                 `,
                 buttonsHtml: `
                     <div class="flex flex-col gap-2 pt-1">
-                        <button class="w-full bg-[#1a1a18] hover:bg-black text-[#fdfdfd] font-bold px-4 py-2.5 rounded-lg text-xs shadow-sm">Je m’inscris</button>
-                        <button class="w-full bg-white text-slate-700 font-medium px-4 py-2 rounded-lg text-xs border border-slate-300">En savoir plus</button>
-                        <button class="w-full bg-white text-slate-700 font-medium px-4 py-2 rounded-lg text-xs border border-slate-300">Voir mes offres</button>
+                        <button class="w-full bg-[#1a1a18] hover:bg-black text-white font-bold px-4 py-3 rounded-xl text-xs shadow-md">Je m’inscris</button>
+                        <button class="w-full bg-slate-100 text-slate-600 font-medium px-4 py-2 rounded-xl text-xs border border-slate-200">En savoir plus</button>
+                        <button class="w-full bg-slate-100 text-slate-600 font-medium px-4 py-2 rounded-xl text-xs border border-slate-200">Voir mes offres</button>
                     </div>
                 `,
                 proofHtml: `<p class="italic text-slate-500 font-medium">Déjà des milliers d’abonnées conquises</p>`,
@@ -251,8 +303,8 @@
                 hotspots: {
                     1: {
                         q: "1. Compréhension de la visiteuse",
-                        status: "NOK - Promesse Interconnectable",
-                        desc: "Passez à l'étape supérieure pourrait désigner n'importe quelle offre. Rien n'indique qu'on comprend la situation vécue par la visiteuse.",
+                        status: "NOK - Promesse Vague",
+                        desc: "« Passez à l'étape supérieure » pourrait désigner n'importe quelle offre. Rien n'indique qu'on comprend la situation vécue par la visiteuse.",
                         impact: "Le cerveau ne se sent pas concerné et décroche."
                     },
                     2: {
@@ -272,60 +324,62 @@
             after: {
                 navHtml: `
                     <div class="flex items-center justify-between text-xs">
-                        <span class="font-extrabold text-[#1a1a18] tracking-widest text-sm">LOGO</span>
-                        <span class="text-[10px] text-[#b8956a] font-mono bg-[#b8956a]/10 px-2.5 py-1 rounded-md border border-[#b8956a]/30 font-semibold">Page d'Inscription Épurée</span>
+                        <span class="font-black text-[#1a1a18] tracking-widest text-base">LOGO</span>
+                        <span class="text-[10px] text-[#8c6d46] font-mono bg-[#b8956a]/15 px-3 py-1 rounded-full border border-[#b8956a]/30 font-bold">Page d'Inscription Directe</span>
                     </div>
                 `,
                 title: "Organisez votre semaine d’indépendante en 45 minutes, avec la méthode des 3 blocs",
                 subtitle: "Vous finissez vos journées épuisée, sans avoir touché à l’essentiel. Et le dimanche soir, vous rouvrez vos mails.",
                 methodHtml: `
-                    <p class="text-xs font-bold text-[#b8956a] uppercase tracking-wider flex items-center gap-1.5">
-                        <svg class="w-4 h-4 text-[#b8956a]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        Vous repartez avec :
-                    </p>
-                    <ul class="text-xs text-slate-700 space-y-2 pt-1 font-medium">
-                        <li class="flex items-start gap-2">
-                            <span class="text-[#b8956a] font-bold">•</span>
-                            <span><strong class="text-[#1a1a18]">Une semaine planifiée</strong> avec la méthode des 3 blocs : trois blocs par jour</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-[#b8956a] font-bold">•</span>
-                            <span>Vos <strong class="text-[#1a1a18]">3 tâches qui comptent vraiment</strong></span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-[#b8956a] font-bold">•</span>
-                            <span>Un <strong class="text-[#1a1a18]">modèle à réutiliser</strong> chaque dimanche</span>
-                        </li>
-                    </ul>
+                    <div class="space-y-2">
+                        <p class="text-xs font-extrabold text-[#8c6d46] uppercase tracking-wider font-mono flex items-center gap-1.5">
+                            <i data-lucide="check-circle" class="w-3.5 h-3.5 text-[#b8956a]"></i>
+                            Vous repartez avec :
+                        </p>
+                        <ul class="text-xs text-slate-700 space-y-2 font-medium">
+                            <li class="flex items-start gap-2">
+                                <span class="text-[#b8956a] font-bold">•</span>
+                                <span><strong class="text-[#1a1a18]">Une semaine planifiée</strong> avec la méthode des 3 blocs (3 blocs par jour, pas une liste à rallonge)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-[#b8956a] font-bold">•</span>
+                                <span>Vos <strong class="text-[#1a1a18]">3 tâches qui comptent vraiment</strong></span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-[#b8956a] font-bold">•</span>
+                                <span>Un <strong class="text-[#1a1a18]">modèle à réutiliser</strong> chaque dimanche</span>
+                            </li>
+                        </ul>
+                    </div>
                 `,
                 fieldsHtml: `
                     <div class="space-y-1">
-                        <label class="text-[11px] font-semibold text-slate-700">Votre Prénom</label>
-                        <input type="text" placeholder="Ex: Julie" disabled class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 placeholder-slate-400">
+                        <label class="text-[11px] font-bold text-slate-700">Prénom</label>
+                        <input type="text" placeholder="Votre prénom" disabled class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 placeholder-slate-400">
                     </div>
                     <div class="space-y-1">
-                        <label class="text-[11px] font-semibold text-slate-700">Votre Adresse email</label>
-                        <input type="email" placeholder="julie@independante.com" disabled class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 placeholder-slate-400">
+                        <label class="text-[11px] font-bold text-slate-700">Adresse email</label>
+                        <input type="email" placeholder="votre@email.com" disabled class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 placeholder-slate-400">
                     </div>
                 `,
                 buttonsHtml: `
-                    <button class="w-full bg-[#b8956a] hover:bg-[#a6845c] text-[#1a1a18] font-extrabold px-6 py-3 rounded-xl text-xs transition shadow-lg shadow-[#b8956a]/20">Je réserve ma place</button>
-                    <p class="text-[11px] text-slate-500 font-medium leading-relaxed pt-1.5 flex items-start gap-1">
-                        <span>🔒</span>
+                    <button class="w-full bg-[#b8956a] hover:bg-[#a6845c] text-[#1a1a18] font-extrabold px-6 py-3.5 rounded-xl text-xs transition shadow-lg shadow-[#b8956a]/25">Je réserve ma place</button>
+                    <p class="text-[11px] text-slate-500 font-medium leading-relaxed pt-1.5 flex items-start gap-1.5">
+                        <span class="text-xs">🔒</span>
                         <span><strong class="text-slate-800">Gratuit, 45 minutes.</strong> Un replay si vous ne pouvez pas venir. Un seul email de rappel, puis rien d’autre sans votre accord.</span>
                     </p>
                 `,
                 proofHtml: `
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 border-l-4 border-l-[#b8956a]">
-                        <p class="text-slate-800 italic text-xs leading-relaxed font-medium">En 45 minutes, j’ai fini avec ma semaine planifiée et trois priorités claires. Je n’ouvre plus mes mails le dimanche soir.</p>
-                        <p class="text-[11px] text-slate-500 mt-2 font-semibold flex items-center gap-1.5">
+                    <div class="bg-white p-4.5 rounded-2xl border border-slate-200 border-l-4 border-l-[#b8956a] shadow-sm">
+                        <p class="text-slate-800 italic text-xs leading-relaxed font-medium">« En 45 minutes, j’ai fini avec ma semaine planifiée et trois priorités claires. Je n’ouvre plus mes mails le dimanche soir. »</p>
+                        <p class="text-[11px] text-slate-500 mt-2 font-bold flex items-center gap-1.5">
                             <span class="w-1.5 h-1.5 rounded-full bg-[#b8956a]"></span>
                             Camille, graphiste indépendante <span class="text-[10px] text-slate-400 font-normal">(témoignage fictif)</span>
                         </p>
                     </div>
                 `,
                 bottomReassuranceHtml: `
-                    <p class="text-xs text-slate-700 leading-relaxed bg-slate-50 p-3.5 rounded-xl border border-slate-200/80 font-medium">
+                    <p class="text-xs text-slate-700 leading-relaxed bg-slate-100/80 p-4 rounded-xl border border-slate-200/80 font-medium">
                         <strong class="text-[#1a1a18]">Pas un énième agenda à remplir.</strong> Avec la méthode des 3 blocs, vous ne planifiez que trois blocs par jour : ceux qui font avancer votre activité. Le reste attend.
                     </p>
                 `,
@@ -379,21 +433,25 @@
             const modeTag = document.getElementById('current-mode-tag');
 
             if (currentMode === 'before') {
-                btnBefore.className = "px-4 py-2 text-xs font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 bg-[#b8956a]/15 text-[#b8956a] border border-[#b8956a]/30";
-                btnAfter.className = "px-4 py-2 text-xs font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 text-[#a0a09b] hover:text-[#fdfdfd]";
-                modeTag.className = "text-[10px] uppercase font-bold px-2.5 py-1 rounded-md bg-[#b8956a]/15 text-[#b8956a] border border-[#b8956a]/30";
+                btnBefore.className = "px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 bg-red-500/20 text-red-400 border border-red-500/40 shadow-sm";
+                btnAfter.className = "px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 text-[#a0a09b] hover:text-[#fdfdfd]";
+                modeTag.className = "text-[10px] uppercase font-bold px-2.5 py-1 rounded-md bg-red-500/10 text-red-400 border border-red-500/30 font-mono";
                 modeTag.innerText = "Version Frictional (Avant)";
             } else {
-                btnAfter.className = "px-4 py-2 text-xs font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 bg-[#b8956a]/15 text-[#b8956a] border border-[#b8956a]/30";
-                btnBefore.className = "px-4 py-2 text-xs font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 text-[#a0a09b] hover:text-[#fdfdfd]";
-                modeTag.className = "text-[10px] uppercase font-bold px-2.5 py-1 rounded-md bg-[#b8956a]/15 text-[#b8956a] border border-[#b8956a]/30";
+                btnAfter.className = "px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 bg-[#b8956a] text-[#1a1a18] shadow-md font-bold";
+                btnBefore.className = "px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 text-[#a0a09b] hover:text-[#fdfdfd]";
+                modeTag.className = "text-[10px] uppercase font-bold px-2.5 py-1 rounded-md bg-[#b8956a]/15 text-[#b8956a] border border-[#b8956a]/30 font-mono";
                 modeTag.innerText = "Version Optimisée (Après)";
             }
 
             for (let i = 1; i <= 3; i++) {
                 const hs = document.getElementById(`hotspot-${i}`);
-                hs.className = `hotspot-btn absolute w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-[#1a1a18] z-25 cursor-pointer transition transform hover:scale-110 hotspot-pulse-gold bg-[#b8956a] shadow-md ${i === 1 ? '-right-3 -top-2' : i === 2 ? '-right-3 -top-3' : 'right-0 top-4'} ${activeHotspot === i ? 'ring-4 ring-white scale-110' : ''}`;
-                hs.style.display = showAnnotations ? 'flex' : 'none';
+                if (activeHotspot === i) {
+                    hs.className = "hotspot-pin w-8 h-8 rounded-full flex items-center justify-center font-extrabold text-xs text-[#1a1a18] relative z-10 hotspot-active shadow-lg ring-2 ring-white";
+                } else {
+                    hs.className = "hotspot-pin w-8 h-8 rounded-full flex items-center justify-center font-extrabold text-xs text-[#1a1a18] relative z-10";
+                }
+                document.getElementById(`hotspot-wrapper-${i}`).style.display = showAnnotations ? 'block' : 'none';
             }
 
             const activeInfo = currentData.hotspots[activeHotspot];
@@ -402,23 +460,24 @@
 
             explanationContainer.innerHTML = `
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-bold text-[#fdfdfd]">${activeInfo.q}</span>
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded ${isNok ? 'bg-red-950 text-red-400 border border-red-800/80' : 'bg-[#b8956a]/20 text-[#b8956a] border border-[#b8956a]/40'}">
+                    <span class="text-xs font-extrabold text-[#fdfdfd] font-mono">${activeInfo.q}</span>
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded font-mono ${isNok ? 'bg-red-950 text-red-400 border border-red-800' : 'bg-[#b8956a]/20 text-[#b8956a] border border-[#b8956a]/40'}">
                         ${activeInfo.status}
                     </span>
                 </div>
-                <p class="text-xs text-[#a0a09b] leading-relaxed pt-1 font-normal">
+                <p class="text-xs text-[#a0a09b] leading-relaxed font-normal">
                     ${activeInfo.desc}
                 </p>
-                <div class="bg-[#1a1a18] p-3 rounded-xl border border-[#333330] mt-2">
-                    <span class="text-[11px] font-semibold text-[#a0a09b] block mb-0.5">Impact Neuromarketing :</span>
-                    <span class="text-xs ${isNok ? 'text-red-300' : 'text-[#b8956a]'} font-medium">${activeInfo.impact}</span>
+                <div class="bg-[#1a1a18] p-3.5 rounded-xl border border-[#33332e]">
+                    <span class="text-[11px] font-bold text-[#b8956a] uppercase tracking-wider block mb-1 font-mono">Impact Neuromarketing :</span>
+                    <span class="text-xs text-[#fdfdfd] font-medium leading-relaxed">${activeInfo.impact}</span>
                 </div>
-                <div class="pt-2 flex justify-between text-[11px] text-[#a0a09b]/70">
-                    <span>Cliquez sur 1, 2, 3 pour explorer</span>
-                    <span>Point #${activeHotspot}/3</span>
+                <div class="pt-2 flex justify-between text-[11px] text-[#a0a09b]/60 font-mono">
+                    <span>Puces 1, 2, 3 pour explorer</span>
+                    <span>Analyse #${activeHotspot}/3</span>
                 </div>
             `;
+            lucide.createIcons();
         }
 
         function setMode(mode) { currentMode = mode; render(); }
