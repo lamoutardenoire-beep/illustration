@@ -8,56 +8,55 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+        
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #0b0f17;
+            background-color: #1a1a18;
+            color: #fdfdfd;
         }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* Glowing and hotspot animations */
-        .hotspot-pulse-red {
-            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.8);
-            animation: pulse-red 2s infinite;
+        /* Custom Brand Colors Integration */
+        .brand-bg { background-color: #1a1a18; }
+        .brand-gold { color: #b8956a; }
+        .brand-gold-bg { background-color: #b8956a; }
+        .brand-gold-border { border-color: #b8956a; }
+
+        /* Hotspot custom pulse with brand gold */
+        .hotspot-pulse-gold {
+            box-shadow: 0 0 0 0 rgba(184, 149, 106, 0.8);
+            animation: pulse-gold 2s infinite;
         }
-        .hotspot-pulse-green {
-            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.8);
-            animation: pulse-green 2s infinite;
-        }
-        @keyframes pulse-red {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.8); }
-            70% { transform: scale(1.08); box-shadow: 0 0 0 12px rgba(239, 68, 68, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-        }
-        @keyframes pulse-green {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.8); }
-            70% { transform: scale(1.08); box-shadow: 0 0 0 12px rgba(16, 185, 129, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        @keyframes pulse-gold {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(184, 149, 106, 0.8); }
+            70% { transform: scale(1.08); box-shadow: 0 0 0 12px rgba(184, 149, 106, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(184, 149, 106, 0); }
         }
     </style>
 </head>
-<body class="text-slate-100 min-h-screen flex flex-col justify-between p-4 md:p-8">
+<body class="min-h-screen flex flex-col justify-between p-4 md:p-8">
 
     <!-- Top Header Bar -->
-    <header class="max-w-6xl w-full mx-auto mb-6 flex flex-col md:flex-row items-center justify-between gap-4 bg-slate-900/90 backdrop-blur border border-slate-800/80 p-4 md:p-5 rounded-2xl shadow-2xl">
+    <header class="max-w-6xl w-full mx-auto mb-6 flex flex-col md:flex-row items-center justify-between gap-4 bg-[#232320] backdrop-blur border border-[#333330] p-4 md:p-5 rounded-2xl shadow-2xl">
         <div>
             <div class="flex items-center gap-2.5">
-                <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                <h1 class="text-sm md:text-base font-bold text-white tracking-wide">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#b8956a] animate-pulse"></span>
+                <h1 class="text-sm md:text-base font-bold text-[#fdfdfd] tracking-wide">
                     Cas client (entièrement anonymisé) · Démonstration de lecture d’une page d’inscription
                 </h1>
             </div>
-            <p class="text-xs text-slate-400 mt-1 italic font-medium">
+            <p class="text-xs text-[#a0a09b] mt-1 italic font-medium">
                 Ce n’est pas un manque d’effort. C’est un manque de clarté.
             </p>
         </div>
 
         <!-- Mode Switcher -->
-        <div class="flex items-center gap-2 bg-slate-950 p-1.5 rounded-xl border border-slate-800/80 shrink-0">
-            <button id="btn-before" onclick="setMode('before')" class="px-4 py-2 text-xs font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 bg-red-500/10 text-red-400 border border-red-500/30">
+        <div class="flex items-center gap-2 bg-[#1a1a18] p-1.5 rounded-xl border border-[#333330] shrink-0">
+            <button id="btn-before" onclick="setMode('before')" class="px-4 py-2 text-xs font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 bg-[#b8956a]/15 text-[#b8956a] border border-[#b8956a]/30">
                 <i data-lucide="alert-triangle" class="w-4 h-4"></i>
                 AVANT (Version Frictional)
             </button>
-            <button id="btn-after" onclick="setMode('after')" class="px-4 py-2 text-xs font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 text-slate-400 hover:text-white">
+            <button id="btn-after" onclick="setMode('after')" class="px-4 py-2 text-xs font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 text-[#a0a09b] hover:text-[#fdfdfd]">
                 <i data-lucide="check-circle-2" class="w-4 h-4"></i>
                 APRÈS (Version Optimisée)
             </button>
@@ -68,29 +67,29 @@
     <main class="max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         
         <!-- Preview Screen (Column 1-8) -->
-        <div class="lg:col-span-8 bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl relative">
+        <div class="lg:col-span-8 bg-[#232320] border border-[#333330] rounded-2xl overflow-hidden shadow-2xl relative">
             
             <!-- Browser Frame Bar -->
-            <div class="bg-slate-950 border-b border-slate-800 px-4 py-3 flex items-center justify-between">
+            <div class="bg-[#1a1a18] border-b border-[#333330] px-4 py-3 flex items-center justify-between">
                 <div class="flex items-center space-x-2">
                     <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
                     <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
                     <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
                 </div>
-                <div class="bg-slate-900 border border-slate-800/80 rounded-lg px-3 py-1 text-[11px] text-slate-400 flex items-center gap-2 w-1/2 justify-center font-mono">
-                    <i data-lucide="lock" class="w-3 h-3 text-emerald-500"></i>
+                <div class="bg-[#232320] border border-[#333330] rounded-lg px-3 py-1 text-[11px] text-[#a0a09b] flex items-center gap-2 w-1/2 justify-center font-mono">
+                    <i data-lucide="lock" class="w-3 h-3 text-[#b8956a]"></i>
                     https://masterclass-independante.com/inscription
                 </div>
                 <div>
-                    <button onclick="toggleAnnotations()" id="btn-toggle-ann" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-700 flex items-center gap-1.5 transition font-medium">
+                    <button onclick="toggleAnnotations()" id="btn-toggle-ann" class="text-xs bg-[#2e2e2a] hover:bg-[#3a3a35] text-[#fdfdfd] px-3 py-1.5 rounded-lg border border-[#444440] flex items-center gap-1.5 transition font-medium">
                         <i data-lucide="eye" class="w-3.5 h-3.5"></i>
                         <span id="ann-status-text">Masquer Annotations</span>
                     </button>
                 </div>
             </div>
 
-            <!-- Simulated Page Content (LIGHT THEME for High Contrast) -->
-            <div class="p-6 md:p-10 min-h-[550px] flex flex-col justify-between relative bg-slate-50 text-slate-900">
+            <!-- Simulated Page Content (LIGHT THEME #fdfdfd / #ffffff) -->
+            <div class="p-6 md:p-10 min-h-[550px] flex flex-col justify-between relative bg-[#fdfdfd] text-[#1a1a18]">
                 
                 <!-- Navigation -->
                 <div id="nav-container" class="border-b border-slate-200 pb-4 mb-6">
@@ -102,7 +101,7 @@
                     
                     <!-- Headline & Subtitle -->
                     <div class="space-y-3 relative pr-10">
-                        <h2 id="hero-title" class="text-xl md:text-2xl font-extrabold text-slate-900 leading-tight tracking-tight">
+                        <h2 id="hero-title" class="text-xl md:text-2xl font-extrabold text-[#1a1a18] leading-tight tracking-tight">
                             <!-- Injected -->
                         </h2>
                         <p id="hero-subtitle" class="text-xs md:text-sm text-slate-600 leading-relaxed max-w-xl font-medium">
@@ -110,13 +109,13 @@
                         </p>
 
                         <!-- Hotspot #1 -->
-                        <button onclick="selectHotspot(1)" class="hotspot-btn absolute right-0 top-0 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-white z-20 cursor-pointer transition transform hover:scale-110 hotspot-pulse-red bg-red-600 shadow-md" id="hotspot-1">
+                        <button onclick="selectHotspot(1)" class="hotspot-btn absolute right-0 top-0 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-white z-25 cursor-pointer transition transform hover:scale-110 hotspot-pulse-gold bg-[#b8956a] shadow-md" id="hotspot-1">
                             1
                         </button>
                     </div>
 
                     <!-- Deliverable / Method Block -->
-                    <div id="method-block" class="relative hidden bg-emerald-50/60 border border-emerald-200/80 rounded-xl p-4.5 space-y-2">
+                    <div id="method-block" class="relative hidden bg-[#b8956a]/10 border border-[#b8956a]/30 rounded-xl p-4.5 space-y-2">
                         <!-- Injected -->
                     </div>
 
@@ -131,7 +130,7 @@
                         </div>
 
                         <!-- Hotspot #2 -->
-                        <button onclick="selectHotspot(2)" class="hotspot-btn absolute -right-3 -top-3 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-white z-20 cursor-pointer transition transform hover:scale-110 hotspot-pulse-red bg-red-600 shadow-md" id="hotspot-2">
+                        <button onclick="selectHotspot(2)" class="hotspot-btn absolute -right-3 -top-3 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-white z-25 cursor-pointer transition transform hover:scale-110 hotspot-pulse-gold bg-[#b8956a] shadow-md" id="hotspot-2">
                             2
                         </button>
                     </div>
@@ -149,7 +148,7 @@
                     </div>
 
                     <!-- Hotspot #3 -->
-                    <button onclick="selectHotspot(3)" class="hotspot-btn absolute right-0 top-4 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-white z-20 cursor-pointer transition transform hover:scale-110 hotspot-pulse-red bg-red-600 shadow-md" id="hotspot-3">
+                    <button onclick="selectHotspot(3)" class="hotspot-btn absolute right-0 top-4 w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-white z-25 cursor-pointer transition transform hover:scale-110 hotspot-pulse-gold bg-[#b8956a] shadow-md" id="hotspot-3">
                         3
                     </button>
                 </div>
@@ -161,13 +160,13 @@
         <div class="lg:col-span-4 space-y-4">
             
             <!-- Main Explanation Box -->
-            <div class="bg-slate-900/90 border border-slate-800/90 rounded-2xl p-5 shadow-2xl backdrop-blur">
-                <div class="flex items-center justify-between pb-3.5 mb-3.5 border-b border-slate-800">
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
-                        <i data-lucide="crosshair" class="w-4 h-4 text-blue-400"></i>
+            <div class="bg-[#232320] border border-[#333330] rounded-2xl p-5 shadow-2xl backdrop-blur">
+                <div class="flex items-center justify-between pb-3.5 mb-3.5 border-b border-[#333330]">
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#a0a09b] flex items-center gap-2">
+                        <i data-lucide="crosshair" class="w-4 h-4 text-[#b8956a]"></i>
                         Diagnostic d'Audit
                     </span>
-                    <span id="current-mode-tag" class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-md bg-red-500/10 text-red-400 border border-red-500/20">
+                    <span id="current-mode-tag" class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-md bg-[#b8956a]/15 text-[#b8956a] border border-[#b8956a]/30">
                         Version Frictional
                     </span>
                 </div>
@@ -177,21 +176,21 @@
                 </div>
             </div>
 
-            <!-- Clean & Redesigned Call to Action Box -->
-            <div class="bg-gradient-to-b from-slate-900 to-slate-950 border border-blue-900/40 rounded-2xl p-5 text-xs text-slate-300 space-y-3 shadow-xl">
-                <div class="font-bold text-white flex items-center gap-2 text-sm">
-                    <div class="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
+            <!-- Call to Action Box in Brand Colors -->
+            <div class="bg-gradient-to-b from-[#232320] to-[#1a1a18] border border-[#b8956a]/30 rounded-2xl p-5 text-xs text-slate-300 space-y-3 shadow-xl">
+                <div class="font-bold text-[#fdfdfd] flex items-center gap-2 text-sm">
+                    <div class="w-8 h-8 rounded-lg bg-[#b8956a]/15 border border-[#b8956a]/30 flex items-center justify-center text-[#b8956a] shrink-0">
                         <i data-lucide="message-square" class="w-4 h-4"></i>
                     </div>
                     <span>Analyse de votre propre page</span>
                 </div>
-                <p class="leading-relaxed text-slate-300">
+                <p class="leading-relaxed text-[#a0a09b]">
                     Vous voulez qu’on regarde votre page d'inscription ?
                 </p>
                 <div class="pt-1 flex items-center gap-2">
-                    <span class="text-slate-400">Écrivez-moi</span>
-                    <span class="bg-blue-600 text-white font-mono font-bold px-2.5 py-1 rounded-md text-xs shadow-md shadow-blue-600/30 tracking-wide">RAPPORT</span>
-                    <span class="text-slate-400">en MP.</span>
+                    <span class="text-[#a0a09b]">Écrivez-moi</span>
+                    <span class="bg-[#b8956a] text-[#1a1a18] font-mono font-bold px-2.5 py-1 rounded-md text-xs shadow-md tracking-wide">RAPPORT</span>
+                    <span class="text-[#a0a09b]">en MP.</span>
                 </div>
             </div>
 
@@ -200,7 +199,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="max-w-6xl w-full mx-auto mt-8 pt-4 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+    <footer class="max-w-6xl w-full mx-auto mt-8 pt-4 border-t border-[#333330] flex flex-col sm:flex-row items-center justify-between text-xs text-[#a0a09b] gap-2">
         <p>© Audit & Architecture de Tunnels d'Acquisition B2B</p>
         <p class="font-mono">Analyse de la Friction Cognitive & Neuromarketing</p>
     </footer>
@@ -215,7 +214,7 @@
             before: {
                 navHtml: `
                     <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500">
-                        <span class="font-extrabold text-slate-900 tracking-widest text-sm">LOGO</span>
+                        <span class="font-extrabold text-[#1a1a18] tracking-widest text-sm">LOGO</span>
                         <div class="flex flex-wrap gap-3 text-[11px] font-medium">
                             <span class="hover:text-slate-900 cursor-pointer">Accueil</span>
                             <span class="hover:text-slate-900 cursor-pointer">À propos</span>
@@ -241,7 +240,7 @@
                 `,
                 buttonsHtml: `
                     <div class="flex flex-wrap gap-2 pt-1">
-                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-lg text-xs shadow-sm">Je m’inscris</button>
+                        <button class="bg-[#1a1a18] hover:bg-black text-[#fdfdfd] font-bold px-5 py-2.5 rounded-lg text-xs shadow-sm">Je m’inscris</button>
                         <button class="bg-slate-100 text-slate-700 font-medium px-4 py-2.5 rounded-lg text-xs border border-slate-300">En savoir plus</button>
                         <button class="bg-slate-100 text-slate-700 font-medium px-4 py-2.5 rounded-lg text-xs border border-slate-300">Voir mes offres</button>
                     </div>
@@ -272,29 +271,29 @@
             after: {
                 navHtml: `
                     <div class="flex items-center justify-between text-xs">
-                        <span class="font-extrabold text-slate-900 tracking-widest text-sm">LOGO</span>
-                        <span class="text-[10px] text-emerald-700 font-mono bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200/60 font-semibold">Page d'Inscription Épurée</span>
+                        <span class="font-extrabold text-[#1a1a18] tracking-widest text-sm">LOGO</span>
+                        <span class="text-[10px] text-[#b8956a] font-mono bg-[#b8956a]/10 px-2.5 py-1 rounded-md border border-[#b8956a]/30 font-semibold">Page d'Inscription Épurée</span>
                     </div>
                 `,
                 title: "Organisez votre semaine d’indépendante en 45 minutes, avec la méthode des 3 blocs",
                 subtitle: "Vous finissez vos journées épuisée, sans avoir touché à l’essentiel. Et le dimanche soir, vous rouvrez vos mails.",
                 methodHtml: `
-                    <p class="text-xs font-bold text-emerald-800 uppercase tracking-wider flex items-center gap-1.5">
-                        <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <p class="text-xs font-bold text-[#b8956a] uppercase tracking-wider flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-[#b8956a]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                         Vous repartez avec :
                     </p>
                     <ul class="text-xs text-slate-700 space-y-2 pt-1 pl-1 font-medium">
                         <li class="flex items-start gap-2">
-                            <span class="text-emerald-600 font-bold">•</span>
-                            <span><strong class="text-slate-900">Une semaine planifiée</strong> avec la méthode des 3 blocs : trois blocs par jour, pas une liste à rallonge</span>
+                            <span class="text-[#b8956a] font-bold">•</span>
+                            <span><strong class="text-[#1a1a18]">Une semaine planifiée</strong> avec la méthode des 3 blocs : trois blocs par jour, pas une liste à rallonge</span>
                         </li>
                         <li class="flex items-start gap-2">
-                            <span class="text-emerald-600 font-bold">•</span>
-                            <span>Vos <strong class="text-slate-900">3 tâches qui comptent vraiment</strong></span>
+                            <span class="text-[#b8956a] font-bold">•</span>
+                            <span>Vos <strong class="text-[#1a1a18]">3 tâches qui comptent vraiment</strong></span>
                         </li>
                         <li class="flex items-start gap-2">
-                            <span class="text-emerald-600 font-bold">•</span>
-                            <span>Un <strong class="text-slate-900">modèle à réutiliser</strong> chaque dimanche</span>
+                            <span class="text-[#b8956a] font-bold">•</span>
+                            <span>Un <strong class="text-[#1a1a18]">modèle à réutiliser</strong> chaque dimanche</span>
                         </li>
                     </ul>
                 `,
@@ -303,24 +302,24 @@
                     <input type="email" placeholder="Adresse email" disabled class="bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 placeholder-slate-400">
                 `,
                 buttonsHtml: `
-                    <button class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold px-6 py-3 rounded-xl text-xs transition shadow-lg shadow-emerald-600/20 w-full sm:w-auto">Je réserve ma place</button>
+                    <button class="bg-[#b8956a] hover:bg-[#a6845c] text-[#1a1a18] font-extrabold px-6 py-3 rounded-xl text-xs transition shadow-lg shadow-[#b8956a]/20 w-full sm:w-auto">Je réserve ma place</button>
                     <p class="text-[11px] text-slate-500 font-medium leading-relaxed pt-1.5 flex items-center gap-1">
                         <span>🔒</span>
                         <span><strong class="text-slate-800">Gratuit, 45 minutes.</strong> Un replay si vous ne pouvez pas venir. Un seul email de rappel, puis rien d’autre sans votre accord.</span>
                     </p>
                 `,
                 proofHtml: `
-                    <div class="bg-white p-4 rounded-xl border border-slate-200 border-l-4 border-l-emerald-500 shadow-sm">
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 border-l-4 border-l-[#b8956a] shadow-sm">
                         <p class="text-slate-800 italic text-xs leading-relaxed font-medium">En 45 minutes, j’ai fini avec ma semaine planifiée et trois priorités claires. Je n’ouvre plus mes mails le dimanche soir.</p>
                         <p class="text-[11px] text-slate-500 mt-2 font-semibold flex items-center gap-1.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#b8956a]"></span>
                             Camille, graphiste indépendante <span class="text-[10px] text-slate-400 font-normal">(témoignage fictif)</span>
                         </p>
                     </div>
                 `,
                 bottomReassuranceHtml: `
                     <p class="text-xs text-slate-700 leading-relaxed bg-slate-100/70 p-3.5 rounded-xl border border-slate-200/80 font-medium">
-                        <strong class="text-slate-900">Pas un énième agenda à remplir.</strong> Avec la méthode des 3 blocs, vous ne planifiez que trois blocs par jour : ceux qui font avancer votre activité. Le reste attend.
+                        <strong class="text-[#1a1a18]">Pas un énième agenda à remplir.</strong> Avec la méthode des 3 blocs, vous ne planifiez que trois blocs par jour : ceux qui font avancer votre activité. Le reste attend.
                     </p>
                 `,
                 hotspots: {
@@ -373,24 +372,20 @@
             const modeTag = document.getElementById('current-mode-tag');
 
             if (currentMode === 'before') {
-                btnBefore.className = "px-4 py-2 text-xs font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 bg-red-500/20 text-red-400 border border-red-500/30 shadow-sm";
-                btnAfter.className = "px-4 py-2 text-xs font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 text-slate-400 hover:text-white";
-                modeTag.className = "text-[10px] uppercase font-bold px-2.5 py-1 rounded-md bg-red-500/10 text-red-400 border border-red-500/20";
+                btnBefore.className = "px-4 py-2 text-xs font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 bg-[#b8956a]/15 text-[#b8956a] border border-[#b8956a]/30";
+                btnAfter.className = "px-4 py-2 text-xs font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 text-[#a0a09b] hover:text-[#fdfdfd]";
+                modeTag.className = "text-[10px] uppercase font-bold px-2.5 py-1 rounded-md bg-[#b8956a]/15 text-[#b8956a] border border-[#b8956a]/30";
                 modeTag.innerText = "Version Frictional (Avant)";
             } else {
-                btnAfter.className = "px-4 py-2 text-xs font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 shadow-sm";
-                btnBefore.className = "px-4 py-2 text-xs font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 text-slate-400 hover:text-white";
-                modeTag.className = "text-[10px] uppercase font-bold px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
+                btnAfter.className = "px-4 py-2 text-xs font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 bg-[#b8956a]/15 text-[#b8956a] border border-[#b8956a]/30";
+                btnBefore.className = "px-4 py-2 text-xs font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 text-[#a0a09b] hover:text-[#fdfdfd]";
+                modeTag.className = "text-[10px] uppercase font-bold px-2.5 py-1 rounded-md bg-[#b8956a]/15 text-[#b8956a] border border-[#b8956a]/30";
                 modeTag.innerText = "Version Optimisée (Après)";
             }
 
             for (let i = 1; i <= 3; i++) {
                 const hs = document.getElementById(`hotspot-${i}`);
-                if (currentMode === 'before') {
-                    hs.className = `hotspot-btn absolute w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-white z-20 cursor-pointer transition transform hover:scale-110 ${currentMode === 'before' ? 'hotspot-pulse-red bg-red-600' : 'hotspot-pulse-green bg-emerald-600'} ${i === 1 ? 'right-0 top-0' : i === 2 ? '-right-3 -top-3' : 'right-0 top-4'} ${activeHotspot === i ? 'ring-4 ring-slate-400 scale-110' : ''}`;
-                } else {
-                    hs.className = `hotspot-btn absolute w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-white z-20 cursor-pointer transition transform hover:scale-110 hotspot-pulse-green bg-emerald-600 ${i === 1 ? 'right-0 top-0' : i === 2 ? '-right-3 -top-3' : 'right-0 top-4'} ${activeHotspot === i ? 'ring-4 ring-slate-400 scale-110' : ''}`;
-                }
+                hs.className = `hotspot-btn absolute w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs text-[#1a1a18] z-25 cursor-pointer transition transform hover:scale-110 hotspot-pulse-gold bg-[#b8956a] shadow-md ${i === 1 ? 'right-0 top-0' : i === 2 ? '-right-3 -top-3' : 'right-0 top-4'} ${activeHotspot === i ? 'ring-4 ring-white scale-110' : ''}`;
                 hs.style.display = showAnnotations ? 'flex' : 'none';
             }
 
@@ -400,19 +395,19 @@
 
             explanationContainer.innerHTML = `
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-bold text-white">${activeInfo.q}</span>
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded ${isNok ? 'bg-red-950 text-red-400 border border-red-800/80' : 'bg-emerald-950 text-emerald-400 border border-emerald-800/80'}">
+                    <span class="text-xs font-bold text-[#fdfdfd]">${activeInfo.q}</span>
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded ${isNok ? 'bg-red-950 text-red-400 border border-red-800/80' : 'bg-[#b8956a]/20 text-[#b8956a] border border-[#b8956a]/40'}">
                         ${activeInfo.status}
                     </span>
                 </div>
-                <p class="text-xs text-slate-300 leading-relaxed pt-1 font-normal">
+                <p class="text-xs text-[#a0a09b] leading-relaxed pt-1 font-normal">
                     ${activeInfo.desc}
                 </p>
-                <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800 mt-2">
-                    <span class="text-[11px] font-semibold text-slate-400 block mb-0.5">Impact Neuromarketing :</span>
-                    <span class="text-xs ${isNok ? 'text-red-300' : 'text-emerald-300'} font-medium">${activeInfo.impact}</span>
+                <div class="bg-[#1a1a18] p-3 rounded-xl border border-[#333330] mt-2">
+                    <span class="text-[11px] font-semibold text-[#a0a09b] block mb-0.5">Impact Neuromarketing :</span>
+                    <span class="text-xs ${isNok ? 'text-red-300' : 'text-[#b8956a]'} font-medium">${activeInfo.impact}</span>
                 </div>
-                <div class="pt-2 flex justify-between text-[11px] text-slate-500">
+                <div class="pt-2 flex justify-between text-[11px] text-[#a0a09b]/70">
                     <span>Cliquez sur 1, 2, 3 pour explorer</span>
                     <span>Point #${activeHotspot}/3</span>
                 </div>
