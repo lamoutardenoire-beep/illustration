@@ -373,4 +373,131 @@
                         <p class="text-slate-800 italic text-xs leading-relaxed font-medium">« En 45 minutes, j’ai fini avec ma semaine planifiée et trois priorités claires. Je n’ouvre plus mes mails le dimanche soir. »</p>
                         <p class="text-[11px] text-slate-500 mt-1.5 font-bold flex items-center gap-1.5">
                             <span class="w-1.5 h-1.5 rounded-full bg-[#6b8e73]"></span>
-                            Camille, graphiste indépendante <span class="text-[10px] text-slate-40
+                            Camille, graphiste indépendante <span class="text-[10px] text-slate-400 font-normal">(témoignage fictif)</span>
+                        </p>
+                    </div>
+                `,
+                bottomReassuranceHtml: `
+                    <p class="text-xs text-slate-700 leading-relaxed bg-slate-100/70 p-3 rounded-xl border border-slate-200/80 font-medium">
+                        <strong class="text-[#1a1a18]">Pas un énième agenda à remplir.</strong> Avec la méthode des 3 blocs, vous ne planifiez que trois blocs par jour. Le reste attend.
+                    </p>
+                `,
+                hotspots: {
+                    1: {
+                        q: "1. Compréhension de la visiteuse",
+                        status: "OK - Scène Vécu Identifiée",
+                        statusStyle: "bg-[#6b8e73]/20 text-[#6b8e73] border border-[#6b8e73]/40",
+                        desc: "La scène (épuisée en fin de journée, réouverture des mails le dimanche soir) montre qu'on comprend exactement ce que vit la visiteuse.",
+                        impact: "Connexion émotionnelle et sentiment immédiat d'être comprise."
+                    },
+                    2: {
+                        q: "2. Méthode & Différenciation",
+                        status: "OK - Méthode Nommée & Livrable",
+                        statusStyle: "bg-[#6b8e73]/20 text-[#6b8e73] border border-[#6b8e73]/40",
+                        desc: "La méthode est nommée (méthode des 3 blocs), sa différence tient en une ligne et le livrable est clair (semaine planifiée en 45 min).",
+                        impact: "Valeur perçue élevée et envie d'obtenir le résultat."
+                    },
+                    3: {
+                        q: "3. Parcours & Réduction des Risques",
+                        status: "OK - Chemin Unique & Risque Levé",
+                        statusStyle: "bg-[#6b8e73]/20 text-[#6b8e73] border border-[#6b8e73]/40",
+                        desc: "Un seul chemin, le risque est totalement levé sous le bouton (replay, pas de spam), et la preuve spécifique vient rassurer juste à côté.",
+                        impact: "Passage à l'acte sans hésitation."
+                    }
+                }
+            }
+        };
+
+        lucide.createIcons();
+
+        function render() {
+            const currentData = data[currentMode];
+            
+            document.getElementById('nav-container').innerHTML = currentData.navHtml;
+            document.getElementById('hero-title').innerText = currentData.title;
+            document.getElementById('hero-subtitle').innerText = currentData.subtitle;
+            
+            const methodBlock = document.getElementById('method-block');
+            methodBlock.className = `rounded-xl p-4 space-y-2 ${currentData.methodStyle}`;
+            methodBlock.innerHTML = currentData.methodHtml;
+            methodBlock.classList.remove('hidden');
+
+            document.getElementById('form-fields').innerHTML = currentData.fieldsHtml;
+            document.getElementById('cta-primary-container').innerHTML = currentData.ctaPrimaryHtml;
+            
+            const secContainer = document.getElementById('secondary-buttons-container');
+            if (currentData.secondaryButtonsHtml) {
+                secContainer.classList.remove('hidden');
+                secContainer.innerHTML = currentData.secondaryButtonsHtml;
+            } else {
+                secContainer.classList.add('hidden');
+            }
+
+            document.getElementById('hero-proof-container').innerHTML = currentData.proofHtml;
+            document.getElementById('bottom-reassurance').innerHTML = currentData.bottomReassuranceHtml;
+
+            const btnBefore = document.getElementById('btn-before');
+            const btnAfter = document.getElementById('btn-after');
+            const modeTag = document.getElementById('current-mode-tag');
+
+            if (currentMode === 'before') {
+                btnBefore.className = "px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 bg-[#c86d51] text-white shadow-md";
+                btnAfter.className = "px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 text-[#a0a09b] hover:text-[#fdfdfd]";
+                modeTag.className = "text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-[#c86d51]/20 text-[#c86d51] border border-[#c86d51]/40 font-mono";
+                modeTag.innerText = "AVANT (Frictional)";
+            } else {
+                btnAfter.className = "px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 bg-[#6b8e73] text-[#1a1a18] shadow-md font-bold";
+                btnBefore.className = "px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-2 text-[#a0a09b] hover:text-[#fdfdfd]";
+                modeTag.className = "text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-[#6b8e73]/20 text-[#6b8e73] border border-[#6b8e73]/40 font-mono";
+                modeTag.innerText = "APRÈS (Optimisé)";
+            }
+
+            for (let i = 1; i <= 3; i++) {
+                const hs = document.getElementById(`hotspot-${i}`);
+                if (activeHotspot === i) {
+                    hs.className = "hotspot-pin w-7 h-7 rounded-full flex items-center justify-center font-extrabold text-xs relative z-10 hotspot-active shadow-md";
+                } else {
+                    hs.className = "hotspot-pin w-7 h-7 rounded-full flex items-center justify-center font-extrabold text-xs text-[#1a1a18] relative z-10 shadow";
+                }
+                document.getElementById(`hotspot-wrapper-${i}`).style.display = showAnnotations ? 'block' : 'none';
+            }
+
+            const activeInfo = currentData.hotspots[activeHotspot];
+            const explanationContainer = document.getElementById('explanation-content');
+
+            explanationContainer.innerHTML = `
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between gap-2">
+                        <span class="text-xs font-extrabold text-[#fdfdfd] font-mono">${activeInfo.q}</span>
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded font-mono shrink-0 ${activeInfo.statusStyle}">
+                            ${activeInfo.status}
+                        </span>
+                    </div>
+                    <p class="text-xs text-[#a0a09b] leading-relaxed font-normal">
+                        ${activeInfo.desc}
+                    </p>
+                </div>
+                <div class="bg-[#1a1a18] p-3.5 rounded-xl border border-[#33332e] space-y-1">
+                    <span class="text-[11px] font-bold text-[#b8956a] uppercase tracking-wider block font-mono">Impact Neuromarketing :</span>
+                    <span class="text-xs text-[#fdfdfd] font-medium leading-relaxed block">${activeInfo.impact}</span>
+                </div>
+                <div class="pt-1 flex justify-between text-[11px] text-[#a0a09b]/60 font-mono border-t border-[#33332e]/60 mt-2">
+                    <span>Puces 1, 2, 3 pour explorer</span>
+                    <span>Analyse #${activeHotspot}/3</span>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        function setMode(mode) { currentMode = mode; render(); }
+        function selectHotspot(id) { activeHotspot = id; render(); }
+        function toggleAnnotations() {
+            showAnnotations = !showAnnotations;
+            document.getElementById('ann-status-text').innerText = showAnnotations ? "Masquer Annotations" : "Afficher Annotations";
+            render();
+        }
+
+        render();
+    </script>
+</body>
+</html>
